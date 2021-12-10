@@ -1,0 +1,7 @@
+{
+  "name": "metamu",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
