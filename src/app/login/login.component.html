@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="ion-margin">
+    <ion-item>
+      <ion-input name="username" type="text" placeholder="username" [(ngModel)]='username'>
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input name="password" type="password" placeholder="Password" [(ngModel)]='password'>
+      </ion-input>
+    </ion-item>
+    <ion-button type="submit" expand="block" (click)='loginDb()' class="ion-margin-horizontal">Login</ion-button>
+    <ion-chip *ngIf="error">{{ error }}</ion-chip>
+
+    <ion-item>
+      <ion-label routerLink="/register" class="ion-text-center">Don't have any Account? Register Now!</ion-label>
+    </ion-item>
+  </ion-card>
+</ion-content>
