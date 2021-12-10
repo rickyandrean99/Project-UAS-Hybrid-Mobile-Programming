@@ -1,3 +1,22 @@
-<p>
-    {{ posts.username }}
-</p>
+<!-- <app-productform></app-productform> -->
+
+<ion-card *ngFor="let post of posts; let i = index" [ngStyle]="{'margin':'1.2rem', 'padding':'0'}">
+    <ion-card-content [ngStyle]="{'margin':'0', 'padding':'0'}">
+        <div [ngStyle]="{'display':'flex', 'flex-direction': 'row', 'padding':'10px'}">
+            <div [ngStyle]="{'width':'13%'}">
+                <ion-img src="https://ubaya.fun/hybrid/160419051/metamu/profiles/{{ post.user_photo }}" [ngStyle]="{'width':'100%'}" class="post-profile-photo" routerLink='REDIRECTGAN'></ion-img>
+            </div>
+            <div [ngStyle]="{'width':'82%', 'display':'flex', 'flex-direction': 'column', 'justify-content':'center', 'padding-left':'10px'}">
+                <div [ngStyle]="{'font-weight':'bold'}" routerLink='REDIRECTGAN'>{{ post.user_id }}</div>
+                <div *ngIf="post.post_location != null">{{ post.post_location }}</div>
+            </div>
+            <div [ngStyle]="{'width':'5%', 'display':'flex', 'flex-direction': 'column', 'justify-content':'center'}">
+                <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+            </div>
+        </div>
+
+        <ion-img src="https://ubaya.fun/hybrid/160419051/metamu/posts/{{ post.post_photo }}" [ngStyle]="{'margin':'0.2rem 0'}"></ion-img>
+        likes + jumlah likes
+        <!-- <ion-button color='warning' routerLink='/detail/{{i+1}}'>See Detail</ion-button> -->
+    </ion-card-content>
+</ion-card>

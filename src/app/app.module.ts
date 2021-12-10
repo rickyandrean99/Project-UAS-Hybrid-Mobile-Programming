@@ -5,7 +5,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage-angular';
-
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { RouteReuseStrategy } from '@angular/router';
 
@@ -16,7 +15,6 @@ import { AppComponent } from './app.component';
 import { BerandaComponent } from './beranda/beranda.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
-
 
 const appRoutes: Routes = [
     { path: 'home', component: BerandaComponent },
@@ -48,4 +46,5 @@ const appRoutes: Routes = [
     ],
     bootstrap: [AppComponent],
 })
+
 export class AppModule { }

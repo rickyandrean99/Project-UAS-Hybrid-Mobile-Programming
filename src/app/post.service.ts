@@ -1,25 +1,15 @@
 import { Injectable } from '@angular/core'
-import { PostModel } from './post.model'
 import { Observable, of } from 'rxjs'
+import { HttpClient } from '@angular/common/http'
 
 @Injectable({
     providedIn: 'root',
 })
 
 export class PostService {
-    posts: PostModel = new PostModel(
-        1,
-        'rickyandrean99',
-        'Ricky Andrean',
-        'ricky.jpg',
-        'Hello Sayang',
-        'Earth',
-        '10 December 2021 17:03'
-    );
-
     postList(): Observable<any> {
-        return of("json")
+        return this.http.get("https://ubaya.fun/hybrid/160419051/metamu/homeservice.php")
     }
 
-    constructor() { }
+    constructor(private http: HttpClient) { }
 }

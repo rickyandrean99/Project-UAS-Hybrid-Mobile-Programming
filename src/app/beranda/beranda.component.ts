@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { PostService } from '../post.service';
+import { Component, OnInit } from '@angular/core'
+import { PostService } from '../post.service'
 
 @Component({
     selector: 'app-beranda',
@@ -12,16 +12,13 @@ export class BerandaComponent implements OnInit {
 
     listPost() {
         this.ps.postList().subscribe(
-            (data) => {
-                 
-            }
+            (data) => this.posts = data
         )
     }
 
     constructor(public ps: PostService) { }
 
     ngOnInit() {
-        this.posts = this.ps.posts;
-        console.log(this.posts);
+        this.listPost()
     }
 }
