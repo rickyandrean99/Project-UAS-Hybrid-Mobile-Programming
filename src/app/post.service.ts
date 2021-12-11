@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core'
 import { Observable, of } from 'rxjs'
 import { HttpClient } from '@angular/common/http'
+import { HttpParams } from '@angular/common/http'
 
 @Injectable({
     providedIn: 'root',
@@ -8,7 +9,13 @@ import { HttpClient } from '@angular/common/http'
 
 export class PostService {
     postList(): Observable<any> {
-        return this.http.get("https://ubaya.fun/hybrid/160419051/metamu/homeservice.php")
+        let body = new HttpParams().set('username', 'rickyandrean99')
+        return this.http.post("https://ubaya.fun/hybrid/160419051/metamu/homeservice.php", body)
+    }
+
+    changeLikeStatus(postId: number, username: string): Observable<any> {
+        let body = new HttpParams().set('post_id', postId).set('username', username)
+        return this.http.post("https://ubaya.fun/hybrid/160419051/metamu/like_status.php", body)
     }
 
     constructor(private http: HttpClient) { }

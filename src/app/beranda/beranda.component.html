@@ -2,6 +2,7 @@
 
 <ion-card *ngFor="let post of posts; let i = index" [ngStyle]="{'margin':'1.2rem', 'padding':'0'}">
     <ion-card-content [ngStyle]="{'margin':'0', 'padding':'0'}">
+        <!-- Header section -->
         <div [ngStyle]="{'display':'flex', 'flex-direction': 'row', 'padding':'10px'}">
             <div [ngStyle]="{'width':'13%'}">
                 <ion-img src="https://ubaya.fun/hybrid/160419051/metamu/profiles/{{ post.user_photo }}" [ngStyle]="{'width':'100%'}" class="post-profile-photo" routerLink='REDIRECTGAN'></ion-img>
@@ -15,8 +16,18 @@
             </div>
         </div>
 
+        <!-- Image section -->
         <ion-img src="https://ubaya.fun/hybrid/160419051/metamu/posts/{{ post.post_photo }}" [ngStyle]="{'margin':'0.2rem 0'}"></ion-img>
-        likes + jumlah likes
-        <!-- <ion-button color='warning' routerLink='/detail/{{i+1}}'>See Detail</ion-button> -->
+        
+        <!-- Bottom section -->
+        <div [ngStyle]="{'display':'flex', 'flex-direction': 'row', 'padding':'15px 10px'}">
+            <div [ngStyle]="{'width':'13%', 'display':'flex', 'justify-content':'center', 'align-items':'center'}">
+                <ion-img *ngIf="post.like_status > 0" src="../../assets/icon/like_fill.png" [ngStyle]="{'width':'60%'}" (click)="changeLikeStatus(i)"></ion-img>
+                <ion-img *ngIf="post.like_status == 0" src="../../assets/icon/like.png" [ngStyle]="{'width':'60%'}" (click)="changeLikeStatus(i)"></ion-img>
+            </div>
+            <div [ngStyle]="{'width':'87%', 'display':'flex', 'align-items':'center', 'padding-left':'3px', 'font-weight':'bold'}">
+                {{ post.post_likes }} likes
+            </div>
+        </div>
     </ion-card-content>
 </ion-card>
