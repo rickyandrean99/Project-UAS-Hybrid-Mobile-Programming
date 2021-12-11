@@ -72,51 +72,6 @@ export class BerandaComponent implements OnInit {
         )
     }
 
-    async yodala(index: number) {
-        if (this.posts[index].user_id == await this.storage.get('user_id')) {
-            return [{
-                text: 'Hide this post',
-                icon: 'eye-off',
-                handler: async () => {
-                    this.ps.hidePost(this.posts[index].post_id, await this.storage.get('user_id')).subscribe(
-                        (data) => {
-                            if (data == 'success') {
-                                let idx = this.posts.findIndex((post) => post.post_id === this.posts[index].post_id)
-                                this.posts.splice(idx, 1)
-                            }
-                        }
-                    )
-                },
-            }]
-        } else {
-            return [{
-                text: 'Block friend',
-                icon: 'person-remove',
-                handler: async () => {
-                    this.us.blockFriend(this.posts[index].user_id, await this.storage.get('user_id')).subscribe(
-                        (data) => {
-                            console.log(data)
-                        }
-                    )
-                },
-            },
-            {
-                text: 'Hide this post',
-                icon: 'eye-off',
-                handler: async () => {
-                    this.ps.hidePost(this.posts[index].post_id, await this.storage.get('user_id')).subscribe(
-                        (data) => {
-                            if (data == 'success') {
-                                let idx = this.posts.findIndex((post) => post.post_id === this.posts[index].post_id)
-                                this.posts.splice(idx, 1)
-                            }
-                        }
-                    )
-                },
-            }]
-        }
-    }
-
     async presentActionSheet(index: number) {
         const actionSheet = await this.actionSheetController.create({
             cssClass: 'my-custom-class',
@@ -144,7 +99,9 @@ export class BerandaComponent implements OnInit {
                         handler: async () => {
                             this.us.blockFriend(this.posts[index].user_id, await this.storage.get('user_id')).subscribe(
                                 (data) => {
-                                    console.log(data)
+                                    if (data == "block") {
+                                        // action filter semua post yang memiliki username sesuai yang diblok
+                                    }
                                 }
                             )
                         },
