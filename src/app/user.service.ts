@@ -5,31 +5,31 @@ import { HttpClient } from '@angular/common/http';
 import { HttpParams } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root',
+    providedIn: 'root',
 })
 export class UserService {
-  addUser(name: string, username: string, password: string): Observable<any> {
-    let body = new HttpParams();
-    body = body.set('name', name);
-    body = body.set('username', username);
-    body = body.set('password', password);
+    addUser(name: string, username: string, password: string): Observable<any> {
+        let body = new HttpParams();
+        body = body.set('name', name);
+        body = body.set('username', username);
+        body = body.set('password', password);
 
-    return this.http.post(
-      'https://ubaya.fun/hybrid/160419051/metamu/registerservice.php',
-      body
-    );
-  }
+        return this.http.post(
+            'https://ubaya.fun/hybrid/160419051/metamu/registerservice.php',
+            body
+        );
+    }
 
-  checkUser(username: string, password: string) {
-    let body = new HttpParams();
-    body = body.set('username', username);
-    body = body.set('password', password);
+    checkUser(username: string, password: string) {
+        let body = new HttpParams();
+        body = body.set('username', username);
+        body = body.set('password', password);
 
-    return this.http.post(
-      'https://ubaya.fun/hybrid/160419051/metamu/loginservice.php',
-      body
-    );
-  }
+        return this.http.post(
+            'https://ubaya.fun/hybrid/160419051/metamu/loginservice.php',
+            body
+        );
+    }
 
-  constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) { }
 }

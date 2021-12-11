@@ -1,0 +1,21 @@
+<ion-img src="https://ubaya.fun/hybrid/160419051/metamu/profiles/{{ user[0].photo }}" [ngStyle]="{'width':'100%'}" class="post-profile-photo" routerLink='REDIRECTGAN'></ion-img>
+
+<ion-item>
+  <ion-label position="floating">Nama</ion-label>
+  <ion-input [(ngModel)]="nama"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label position="floating">Biodata</ion-label>
+  <ion-input [(ngModel)]="bio"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label position="floating">Gender</ion-label>
+  <ion-input [(ngModel)]="gender"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label position="floating">Birth Date</ion-label>
+  <ion-input [(ngModel)]="birth"></ion-input>
+</ion-item>
+
+<ion-button expand="block" (click)="register()" class="ion-margin-horizontal"
+  >Save</ion-button>

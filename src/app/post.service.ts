@@ -18,5 +18,10 @@ export class PostService {
         return this.http.post("https://ubaya.fun/hybrid/160419051/metamu/like_status.php", body)
     }
 
+    hidePost(postId: number, username: string) {
+        let body = new HttpParams().set('post_id', postId).set('username', username)
+        return this.http.post("https://ubaya.fun/hybrid/160419051/metamu/hide_post.php", body)
+    }
+
     constructor(private http: HttpClient) { }
 }

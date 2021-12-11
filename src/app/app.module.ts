@@ -10,24 +10,25 @@ import { RouteReuseStrategy } from '@angular/router';
 
 import { UserService } from './user.service';
 import { PostService } from './post.service';
+import { ProfileService } from './profile.service';
 
 import { AppComponent } from './app.component';
 import { BerandaComponent } from './beranda/beranda.component';
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ProfileeditComponent } from './profileedit/profileedit.component';
 
 const appRoutes: Routes = [
     { path: 'home', component: BerandaComponent },
-    { path: 'register', component: RegisterComponent },
-    { path: 'login', component: LoginComponent },
+    { path: 'profile', component: ProfileComponent},
+    { path: 'profile/edit', component: ProfileeditComponent},
 ];
 
 @NgModule({
     declarations: [
         AppComponent,
         BerandaComponent,
-        RegisterComponent,
-        LoginComponent,
+        ProfileComponent,
+        ProfileeditComponent,
     ],
     entryComponents: [],
     imports: [
@@ -43,6 +44,7 @@ const appRoutes: Routes = [
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
         UserService,
         PostService,
+        ProfileService,
     ],
     bootstrap: [AppComponent],
 })

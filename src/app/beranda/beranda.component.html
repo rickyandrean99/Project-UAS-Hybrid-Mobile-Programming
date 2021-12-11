@@ -8,11 +8,11 @@
                 <ion-img src="https://ubaya.fun/hybrid/160419051/metamu/profiles/{{ post.user_photo }}" [ngStyle]="{'width':'100%'}" class="post-profile-photo" routerLink='REDIRECTGAN'></ion-img>
             </div>
             <div [ngStyle]="{'width':'82%', 'display':'flex', 'flex-direction': 'column', 'justify-content':'center', 'padding-left':'10px'}">
-                <div [ngStyle]="{'font-weight':'bold'}" routerLink='REDIRECTGAN'>{{ post.user_id }}</div>
+                <div [ngStyle]="{'font-weight':'bold'}"><span routerLink='REDIRECTGAN'>{{ post.user_id }}</span></div>
                 <div *ngIf="post.post_location != null">{{ post.post_location }}</div>
             </div>
-            <div [ngStyle]="{'width':'5%', 'display':'flex', 'flex-direction': 'column', 'justify-content':'center'}">
-                <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+            <div [ngStyle]="{'width':'5%', 'display':'flex', 'flex-direction': 'column', 'justify-content':'center', 'position':'relative'}">
+                <ion-icon name="ellipsis-vertical-outline" (click)="presentActionSheet(i)"></ion-icon>
             </div>
         </div>
 
@@ -25,8 +25,11 @@
                 <ion-img *ngIf="post.like_status > 0" src="../../assets/icon/like_fill.png" [ngStyle]="{'width':'60%'}" (click)="changeLikeStatus(i)"></ion-img>
                 <ion-img *ngIf="post.like_status == 0" src="../../assets/icon/like.png" [ngStyle]="{'width':'60%'}" (click)="changeLikeStatus(i)"></ion-img>
             </div>
-            <div [ngStyle]="{'width':'87%', 'display':'flex', 'align-items':'center', 'padding-left':'3px', 'font-weight':'bold'}">
+            <div [ngStyle]="{'width':'37%', 'display':'flex', 'align-items':'center', 'padding-left':'3px', 'font-weight':'bold'}">
                 {{ post.post_likes }} likes
+            </div>
+            <div [ngStyle]="{'width':'50%', 'display':'flex', 'align-items':'center', 'justify-content':'flex-end', 'padding-right':'10px', 'font-weight':'bold'}">
+                {{ post.post_time }}
             </div>
         </div>
     </ion-card-content>
