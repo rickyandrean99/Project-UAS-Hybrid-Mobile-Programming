@@ -8,9 +8,9 @@ import { HttpParams } from '@angular/common/http'
 })
 
 export class PostService {
-    postList(): Observable<any> {
-        let body = new HttpParams().set('username', 'rickyandrean99')
-        return this.http.post("https://ubaya.fun/hybrid/160419051/metamu/homeservice.php", body)
+    postList(username: string): Observable<any> {
+        let body = new HttpParams().set('username', username)
+        return this.http.post("https://ubaya.fun/hybrid/160419051/metamu/post_list.php", body)
     }
 
     changeLikeStatus(postId: number, username: string): Observable<any> {
