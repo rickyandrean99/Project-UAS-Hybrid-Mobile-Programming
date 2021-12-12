@@ -31,9 +31,14 @@ export class UserService {
         )
     }
 
-    blockFriend(friend: string, username: string) {
-        let body = new HttpParams().set('friend', friend).set('username', username)
-        return this.http.post("https://ubaya.fun/hybrid/160419051/metamu/block_friend.php", body)
+    blockUser(userTarget: string, username: string) {
+        let body = new HttpParams().set('user_target', userTarget).set('username', username)
+        return this.http.post("https://ubaya.fun/hybrid/160419051/metamu/block_user.php", body)
+    }
+
+    getUser(userTarget: string, username: string) {
+        let body = new HttpParams().set('user_target', userTarget).set('username', username)
+        return this.http.post("https://ubaya.fun/hybrid/160419051/metamu/get_user.php", body)
     }
 
     constructor(private http: HttpClient) { }

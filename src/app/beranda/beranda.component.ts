@@ -97,7 +97,7 @@ export class BerandaComponent implements OnInit {
                         text: 'Block friend',
                         icon: 'person-remove',
                         handler: async () => {
-                            this.us.blockFriend(this.posts[index].user_id, await this.storage.get('user_id')).subscribe(
+                            this.us.blockUser(this.posts[index].user_id, await this.storage.get('user_id')).subscribe(
                                 (data) => {
                                     if (data == "block") {
                                         this.posts = this.posts.filter(post => {
