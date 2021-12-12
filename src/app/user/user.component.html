@@ -1,3 +1,19 @@
-<p>
-    user works!
-</p>
+<ion-grid [ngStyle]="{'padding': '15px 10px 10px'}" *ngIf="user">
+    <ion-row [ngStyle]="{'display':'flex', 'flex-direction': 'row', 'align-items':'center'}">
+        <ion-col size="4">
+            <ion-img src="https://ubaya.fun/hybrid/160419051/metamu/profiles/{{ user.photo }}" [ngStyle]="{'width':'90%','margin-left':'10px'}" class="post-profile-photo"></ion-img>
+        </ion-col>
+        <ion-col size="8">
+            <ion-row [ngStyle]="{'display':'flex', 'flex-direction': 'row', 'align-items':'center'}">
+                <ion-col size="6">
+                    <div class="bold">{{ user.post_amount }}</div>
+                    <div>Posts</div>
+                </ion-col>
+                <ion-col size="6">
+                    <div class="bold">{{ user.post_amount }}</div>
+                    <div>Friends</div>
+                </ion-col>
+            </ion-row>
+        </ion-col>
+    </ion-row>
+</ion-grid>

@@ -10,12 +10,11 @@ import { UserService } from '../user.service'
 })
 
 export class UserComponent implements OnInit {
+    user = null
 
     async getUser(userTarget) {
         this.us.getUser(userTarget, await this.storage.get('user_id')).subscribe(
-            (data) => {
-                console.log(data)
-            }
+            (data) => this.user = data["data"]
         )
     }
 
