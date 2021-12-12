@@ -100,7 +100,9 @@ export class BerandaComponent implements OnInit {
                             this.us.blockFriend(this.posts[index].user_id, await this.storage.get('user_id')).subscribe(
                                 (data) => {
                                     if (data == "block") {
-                                        // action filter semua post yang memiliki username sesuai yang diblok
+                                        this.posts = this.posts.filter(post => {
+                                            return post.user_id !== this.posts[index].user_id
+                                        })
                                     }
                                 }
                             )

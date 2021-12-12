@@ -14,12 +14,12 @@ import { ProfileService } from './profile.service';
 
 import { AppComponent } from './app.component';
 import { BerandaComponent } from './beranda/beranda.component';
-import { ProfileComponent } from './profile/profile.component';
 import { ProfileeditComponent } from './profileedit/profileedit.component';
+import { UserComponent } from './user/user.component';
 
 const appRoutes: Routes = [
     { path: 'home', component: BerandaComponent },
-    { path: 'profile', component: ProfileComponent},
+    { path: 'user/:username', component: UserComponent },
     { path: 'profile/edit', component: ProfileeditComponent},
 ];
 
@@ -27,7 +27,7 @@ const appRoutes: Routes = [
     declarations: [
         AppComponent,
         BerandaComponent,
-        ProfileComponent,
+        UserComponent,
         ProfileeditComponent,
     ],
     entryComponents: [],
