@@ -16,11 +16,15 @@ import { AppComponent } from './app.component';
 import { BerandaComponent } from './beranda/beranda.component';
 import { ProfileeditComponent } from './profileedit/profileedit.component';
 import { UserComponent } from './user/user.component';
+import { PostComponent } from './post/post.component';
+import { AboutusComponent } from './aboutus/aboutus.component';
 
 const appRoutes: Routes = [
     { path: 'home', component: BerandaComponent },
     { path: 'user/:username', component: UserComponent },
-    { path: 'profile/edit', component: ProfileeditComponent},
+    { path: 'user/:username/post/:id', component: PostComponent },
+    { path: 'profile/edit', component: ProfileeditComponent },
+    { path: 'aboutus', component: AboutusComponent },
 ];
 
 @NgModule({
@@ -29,6 +33,8 @@ const appRoutes: Routes = [
         BerandaComponent,
         UserComponent,
         ProfileeditComponent,
+        PostComponent,
+        AboutusComponent,
     ],
     entryComponents: [],
     imports: [

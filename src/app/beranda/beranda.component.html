@@ -3,10 +3,10 @@
         <!-- Header section -->
         <div [ngStyle]="{'display':'flex', 'flex-direction': 'row', 'padding':'10px'}">
             <div [ngStyle]="{'width':'13%'}">
-                <ion-img src="https://ubaya.fun/hybrid/160419051/metamu/profiles/{{ post.user_photo }}" [ngStyle]="{'width':'100%'}" class="post-profile-photo" routerLink='REDIRECTGAN'></ion-img>
+                <ion-img src="https://ubaya.fun/hybrid/160419051/metamu/profiles/{{ post.user_photo }}" [ngStyle]="{'width':'100%'}" class="post-profile-photo" routerLink='/user/{{ post.user_id }}'></ion-img>
             </div>
             <div [ngStyle]="{'width':'82%', 'display':'flex', 'flex-direction': 'column', 'justify-content':'center', 'padding-left':'10px'}">
-                <div [ngStyle]="{'font-weight':'bold'}"><span routerLink='REDIRECTGAN'>{{ post.user_id }}</span></div>
+                <div [ngStyle]="{'font-weight':'bold'}"><span routerLink='/user/{{ post.user_id }}'>{{ post.user_id }}</span></div>
                 <div *ngIf="post.post_location != null">{{ post.post_location }}</div>
             </div>
             <div [ngStyle]="{'width':'5%', 'display':'flex', 'flex-direction': 'column', 'justify-content':'center', 'position':'relative'}">
@@ -15,7 +15,7 @@
         </div>
 
         <!-- Image section -->
-        <ion-img src="https://ubaya.fun/hybrid/160419051/metamu/posts/{{ post.post_photo }}" [ngStyle]="{'margin':'0.2rem 0'}"></ion-img>
+        <ion-img src="https://ubaya.fun/hybrid/160419051/metamu/posts/{{ post.post_photo }}" routerLink='/user/{{ post.user_id }}/post/{{ post.post_id }}' [ngStyle]="{'margin':'0.2rem 0'}"></ion-img>
         
         <!-- Bottom section -->
         <div [ngStyle]="{'display':'flex', 'flex-direction': 'row', 'padding':'15px 10px'}">

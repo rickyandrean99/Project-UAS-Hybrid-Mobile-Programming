@@ -1,5 +1,5 @@
-<ion-grid [ngStyle]="{'padding': '15px 10px 10px'}" *ngIf="user">
-    <ion-row [ngStyle]="{'display':'flex', 'flex-direction': 'row', 'align-items':'center'}">
+<ion-grid [ngStyle]="{'padding': '15px 0px'}" *ngIf="user">
+    <ion-row [ngStyle]="{'display':'flex', 'flex-direction': 'row', 'align-items':'center', 'margin':'0 10px'}">
         <ion-col size="4">
             <ion-img src="https://ubaya.fun/hybrid/160419051/metamu/profiles/{{ user.photo }}" [ngStyle]="{'width':'90%','margin-left':'10px'}" class="post-profile-photo"></ion-img>
         </ion-col>
@@ -16,10 +16,40 @@
             </ion-row>
         </ion-col>
     </ion-row>
-    <ion-row [ngStyle]="{'text-align':'left', 'margin-top':'10px'}">
-        <ion-col size="12" class="personal-data">(logo) {{ user.name }}</ion-col>
-        <ion-col size="12" class="personal-data">(logo) {{ user.gender }}</ion-col>
-        <ion-col size="12" class="personal-data">(logo) {{ user.birth_date }}</ion-col>
-        <ion-col size="12" class="personal-data">(logo) {{ user.bio }}</ion-col>
+
+    <ion-row [ngStyle]="{'margin':'10px 10px 0', 'padding-left':'5px'}">
+        <!-- Nama -->
+        <ion-col size="1" [ngStyle]="{'text-align':'center'}">
+            <ion-icon name="person"></ion-icon> 
+        </ion-col>
+        <ion-col size="11" [ngStyle]="{'text-align':'left'}" class="personal-data">
+            {{ user.name }}
+        </ion-col>
+
+        <!-- Birthdate -->
+        <ion-col size="1" [ngStyle]="{'text-align':'center'}">
+            <ion-icon name="today"></ion-icon>
+        </ion-col>
+        <ion-col size="11" [ngStyle]="{'text-align':'left'}" class="personal-data">
+            {{ user.birth_date }}
+        </ion-col>
+
+        <!-- Bio -->
+        <ion-col size="1" [ngStyle]="{'text-align':'center'}">
+            <ion-icon name="reader"></ion-icon>
+        </ion-col>
+        <ion-col size="11" [ngStyle]="{'text-align':'left', 'line-height':'1.3rem'}" class="personal-data">
+            {{ user.bio }}
+        </ion-col>
+    </ion-row>
+
+    <div [ngStyle]="{'margin':'5px 10px', 'text-align':'center'}">
+        <ion-button color="primary" [ngStyle]="{'width':'95%'}" class="btn-edit" routerLink="/profile/edit" *ngIf="user.id == user_id_login">Edit Profile</ion-button>
+    </div>
+    
+    <ion-row [ngStyle]="{'margin-top':'20px'}">
+        <ion-col size="4" *ngFor="let post of user.post_list; let i = index" [ngStyle]="{'padding':'0'}">
+            <ion-img src="https://ubaya.fun/hybrid/160419051/metamu/posts/{{ post.post_photo }}" routerLink='/user/{{ user.id }}/post/{{ post.post_id }}'></ion-img>
+        </ion-col>
     </ion-row>
 </ion-grid>

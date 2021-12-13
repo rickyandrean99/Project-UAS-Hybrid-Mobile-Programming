@@ -13,6 +13,11 @@ export class PostService {
         return this.http.post("https://ubaya.fun/hybrid/160419051/metamu/post_list.php", body)
     }
 
+    postDetail(username: string, postId: number) {
+        let body = new HttpParams().set('username', username).set('post_id', postId)
+        return this.http.post("https://ubaya.fun/hybrid/160419051/metamu/post_detail.php", body)
+    }
+
     changeLikeStatus(postId: number, username: string): Observable<any> {
         let body = new HttpParams().set('post_id', postId).set('username', username)
         return this.http.post("https://ubaya.fun/hybrid/160419051/metamu/like_status.php", body)

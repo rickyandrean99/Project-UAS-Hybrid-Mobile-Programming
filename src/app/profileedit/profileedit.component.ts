@@ -15,17 +15,18 @@ export class ProfileeditComponent implements OnInit {
     bio = "";
     gender = "";
     birth = "";
+    foto = "";
 
     constructor(public ps: ProfileService, private storage: Storage) { }
     // username:string  = await this.storage.get('user_id');
     profile() {
         this.ps.getProfile(this.username).subscribe((data) => {
-            // this.user = data['data'];
-            // this.nama = this.user[0].name;
-            // this.bio = this.user[0].bio;
-            // this.gender = this.user[0].gender;
-            // this.birth = this.user[0].birth_date;
-            // alert(data);
+            this.nama = data["data"].name;  
+            this.bio = data["data"].bio;
+            this.gender = data["data"].gender;
+            this.birth = data["data"].birth_date;
+            this.foto = data["data"].photo;
+            
         });
     }
     async ngOnInit() {

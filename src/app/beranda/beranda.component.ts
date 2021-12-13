@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core'
-import { PostService } from '../post.service'
-import { ActionSheetController } from '@ionic/angular'
-import { Storage } from '@ionic/storage'
-import { UserService } from '../user.service'
+import { Component, OnInit } from '@angular/core';
+import { PostService } from '../post.service';
+import { UserService } from '../user.service';
+import { ActionSheetController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
 
 @Component({
     selector: 'app-beranda',
@@ -14,8 +14,8 @@ export class BerandaComponent implements OnInit {
     posts = null
     open = true
 
-    changeLikeStatus(index: number) {
-        this.ps.changeLikeStatus(this.posts[index].post_id, "rickyandrean99").subscribe(
+    async changeLikeStatus(index: number) {
+        this.ps.changeLikeStatus(this.posts[index].post_id, await this.storage.get('user_id')).subscribe(
             (data) => {
                 if (data == 'add') {
                     this.posts[index].like_status = 1
