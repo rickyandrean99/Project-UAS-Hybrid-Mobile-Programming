@@ -18,6 +18,11 @@ import { ProfileeditComponent } from './profileedit/profileedit.component';
 import { UserComponent } from './user/user.component';
 import { PostComponent } from './post/post.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
+import { BlockComponent } from './block/block.component';
+import { CreatepostComponent } from './createpost/createpost.component';
+import { HiddenpostComponent } from './hiddenpost/hiddenpost.component';
+import { SavedComponent } from './saved/saved.component';
+import { SearchComponent } from './search/search.component';
 
 const appRoutes: Routes = [
     { path: 'home', component: BerandaComponent },
@@ -25,6 +30,11 @@ const appRoutes: Routes = [
     { path: 'user/:username/post/:id', component: PostComponent },
     { path: 'profile/edit', component: ProfileeditComponent },
     { path: 'aboutus', component: AboutusComponent },
+    { path: 'blocked', component: BlockComponent },
+    { path: 'createpost', component: CreatepostComponent },
+    { path: 'hiddenpost', component: HiddenpostComponent },
+    { path: 'saved', component: SavedComponent },
+    { path: 'search', component: SearchComponent },
 ];
 
 @NgModule({
@@ -35,6 +45,11 @@ const appRoutes: Routes = [
         ProfileeditComponent,
         PostComponent,
         AboutusComponent,
+        BlockComponent,
+        CreatepostComponent,
+        HiddenpostComponent,
+        SavedComponent,
+        SearchComponent,
     ],
     entryComponents: [],
     imports: [
