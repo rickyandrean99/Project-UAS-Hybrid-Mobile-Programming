@@ -14,7 +14,23 @@ export class UserComponent implements OnInit {
 
     async getUser(userTarget) {
         this.us.getUser(userTarget, await this.storage.get('user_id')).subscribe(
-            (data) => this.user = data["data"]
+            (data) => {
+                let same = 0
+
+                for (let block1 of data["data"].block_list) {
+                    for (let block2 of data["data"].block_list) {
+                        if (block1.users_id == block2.users_id && block1.block_friend == block2.block_friend) continue
+                        
+                        if (block1.users_id == block2.block_friend && block1.block_friend == block2.users_id) {
+                            same++
+                            continue
+                        }
+                    }
+                }
+
+                data["data"].friend_amount = parseInt(data["data"].friend_amount) + (same/2) - data["data"].block_list.length
+                this.user = data["data"]
+            }
         )
     }
 

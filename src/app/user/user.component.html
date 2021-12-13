@@ -10,10 +10,16 @@
                     <div>Posts</div>
                 </ion-col>
                 <ion-col size="6">
-                    <div class="bold">{{ user.post_amount }}</div>
+                    <div class="bold">{{ user.friend_amount }}</div>
                     <div>Friends</div>
                 </ion-col>
             </ion-row>
         </ion-col>
+    </ion-row>
+    <ion-row [ngStyle]="{'text-align':'left', 'margin-top':'10px'}">
+        <ion-col size="12" class="personal-data">(logo) {{ user.name }}</ion-col>
+        <ion-col size="12" class="personal-data">(logo) {{ user.gender }}</ion-col>
+        <ion-col size="12" class="personal-data">(logo) {{ user.birth_date }}</ion-col>
+        <ion-col size="12" class="personal-data">(logo) {{ user.bio }}</ion-col>
     </ion-row>
 </ion-grid>
