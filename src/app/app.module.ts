@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { RouteReuseStrategy } from '@angular/router';
+import { Camera } from '@ionic-native/camera/ngx';
 
 import { UserService } from './user.service';
 import { PostService } from './post.service';
@@ -66,6 +67,7 @@ const appRoutes: Routes = [
         UserService,
         PostService,
         ProfileService,
+        Camera,
     ],
     bootstrap: [AppComponent],
 })
