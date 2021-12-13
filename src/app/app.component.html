@@ -12,13 +12,13 @@
                 <ion-input name="username" type="text" placeholder="Username" [(ngModel)]="username_login">
                 </ion-input>
             </ion-item>
+
             <ion-item>
                 <ion-input name="password" type="password" placeholder="Password" [(ngModel)]="password_login">
                 </ion-input>
             </ion-item>
 
-            <ion-button type="submit" expand="block" (click)="loginDb()" class="ion-margin-horizontal">Login
-            </ion-button>
+            <ion-button type="submit" expand="block" (click)="loginDb()" class="ion-margin-horizontal">Login</ion-button>
             <ion-chip *ngIf="login_error">{{ login_error }}</ion-chip>
 
             <ion-item>
@@ -94,7 +94,7 @@
                     <ion-item>
                         <ion-icon name="person-remove-outline"></ion-icon>
                         <ion-label routerLink="/blocked">Blocked Friends</ion-label>
-                    </ion-item>
+                     </ion-item>
 
                     <ion-item>
                         <ion-icon name="eye-off-outline"></ion-icon>

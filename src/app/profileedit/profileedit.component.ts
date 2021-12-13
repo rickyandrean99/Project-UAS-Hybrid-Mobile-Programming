@@ -17,6 +17,9 @@ export class ProfileeditComponent implements OnInit {
     birth = "";
     foto = "";
 
+    userImg: any = '';
+    base64Img = '';
+
     constructor(public ps: ProfileService, private storage: Storage) { }
     // username:string  = await this.storage.get('user_id');
     profile() {
@@ -28,6 +31,10 @@ export class ProfileeditComponent implements OnInit {
             this.foto = data["data"].photo;
             
         });
+    }
+
+    openGallery(){
+
     }
     async ngOnInit() {
         this.username = await this.storage.get('user_id');
