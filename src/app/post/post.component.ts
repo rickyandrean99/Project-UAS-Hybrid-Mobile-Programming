@@ -147,7 +147,7 @@ export class PostComponent implements OnInit {
         await actionSheet.present()
     }
 
-    // alert
+    // Alert konfirmasi delete
     async deleteConfirmation() {
         const confirm = await this.alert.create({
             header: 'Delete this post?',
@@ -161,9 +161,10 @@ export class PostComponent implements OnInit {
                 {
                     text: 'Okay',
                     handler: async () => {
+                        // karena delete data sendiri, ambil username dari localstorage saja
                         this.ps.deletePost(this.post.id, await this.storage.get('user_id')).subscribe(
                             (data) => {
-                                console.log(data)
+                                if (data) this.router.navigate(['/home'])
                             }
                         )
                     }
