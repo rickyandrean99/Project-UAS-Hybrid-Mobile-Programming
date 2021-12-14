@@ -20,17 +20,18 @@ export class ProfileeditComponent implements OnInit {
 
     userImg: any = '';
     base64Img = '';
+    attachment = '';
 
     constructor(public ps: ProfileService, private storage: Storage, public camera:Camera) { }
     
 
-    cameraOptions: CameraOptions = {
-        quality: 100,
-        destinationType: this.camera.DestinationType.DATA_URL,
-        encodingType: this.camera.EncodingType.JPEG,
-        mediaType: this.camera.MediaType.PICTURE,
-        allowEdit: true
-       }
+    // cameraOptions: CameraOptions = {
+    //     quality: 100,
+    //     destinationType: this.camera.DestinationType.DATA_URL,
+    //     encodingType: this.camera.EncodingType.JPEG,
+    //     mediaType: this.camera.MediaType.PICTURE,
+    //     allowEdit: true
+    //    }
     profile() {
         this.ps.getProfile(this.username).subscribe((data) => {
             this.nama = data["data"].name;  
@@ -42,13 +43,22 @@ export class ProfileeditComponent implements OnInit {
         });
     }
 
-    openCamera() {
-        this.camera.getPicture(this.cameraOptions).then((imgData) => {
-        console.log('image data =>  ', imgData);
-        this.base64Img = 'data:image/jpeg;base64,' + imgData;
-        this.userImg = this.base64Img;
-        }, (err) => {
-        console.log(err);
+    openGallery() {
+        // this.camera.getPicture(this.cameraOptions).then((imgData) => {
+        // console.log('image data =>  ', imgData);
+        // this.base64Img = 'data:image/jpeg;base64,' + imgData;
+        // this.userImg = this.base64Img;
+        // }, (err) => {
+        // console.log(err);
+        // })
+
+        this.camera.getPicture({
+            sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+            destinationType: this.camera.DestinationType.DATA_URL
+        }).then((res)=>{
+            this.attachment = 'data:image/jpeg;base64,' + res;
+        }).catch(e=>{
+            console.log(e);
         })
        }
     async ngOnInit() {
