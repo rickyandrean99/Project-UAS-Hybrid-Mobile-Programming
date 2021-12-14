@@ -1,0 +1,59 @@
+<ion-content [ngStyle]="{'margin':'0', 'padding':'0'}" *ngIf="post">
+    <!-- Header section -->
+    <div [ngStyle]="{'display':'flex', 'flex-direction': 'row', 'padding':'10px'}">
+        <div [ngStyle]="{'width':'13%'}">
+            <ion-img src="https://ubaya.fun/hybrid/160419051/metamu/profiles/{{ post.photo_profile }}" [ngStyle]="{'width':'100%'}" class="post-profile-photo" routerLink='/user/{{ post.users_id }}'></ion-img>
+        </div>
+        <div [ngStyle]="{'width':'82%', 'display':'flex', 'flex-direction': 'column', 'justify-content':'center', 'padding-left':'10px'}">
+            <div [ngStyle]="{'font-weight':'bold','margin-bottom':'5px', 'font-size':'15px'}"><span routerLink='/user/{{ post.users_id }}'>{{ post.users_id }}</span></div>
+            <div *ngIf="post.location != null" [ngStyle]="{'font-size':'14px'}">{{ post.location }}</div>
+        </div>
+        <!-- <div [ngStyle]="{'width':'5%', 'display':'flex', 'flex-direction': 'column', 'justify-content':'center', 'position':'relative'}">
+            <ion-icon name="ellipsis-vertical-outline" (click)="presentActionSheet(i)"></ion-icon>
+        </div> -->
+    </div>
+
+    <!-- Image section -->
+    <ion-img src="https://ubaya.fun/hybrid/160419051/metamu/posts/{{ post.photo }}" [ngStyle]="{'margin':'0.2rem 0'}"></ion-img>
+    
+    <!-- Bottom section -->
+    <div [ngStyle]="{'display':'flex', 'flex-direction': 'row', 'padding':'15px 10px 0px'}">
+        <div [ngStyle]="{'width':'13%', 'display':'flex', 'justify-content':'center', 'align-items':'center'}">
+            <ion-img *ngIf="post.like_status > 0" src="../../assets/icon/like_fill.png" [ngStyle]="{'width':'60%'}" (click)="changeLikeStatus(i)"></ion-img>
+            <ion-img *ngIf="post.like_status == 0" src="../../assets/icon/like.png" [ngStyle]="{'width':'60%'}" (click)="changeLikeStatus(i)"></ion-img>
+        </div>
+        <div [ngStyle]="{'width':'13%', 'display':'flex', 'justify-content':'center', 'align-items':'center'}">
+            <ion-img src="../../assets/icon/comment.png" [ngStyle]="{'width':'60%'}" routerLink="/user/{{ post.users_id }}/post/{{ post.id }}/comment"></ion-img>
+        </div>
+        <div [ngStyle]="{'width':'61%'}"></div>
+        <div [ngStyle]="{'width':'13%', 'display':'flex', 'justify-content':'center', 'align-items':'center'}">
+            <ion-img *ngIf="post.saved_status == 0" src="../../assets/icon/saved.png" [ngStyle]="{'width':'60%'}" (click)="changeSavedStatus()"></ion-img>
+            <ion-img *ngIf="post.saved_status > 0" src="../../assets/icon/saved_fill.png" [ngStyle]="{'width':'60%'}" (click)="changeSavedStatus()"></ion-img>
+        </div>
+    </div>
+    <ion-grid [ngStyle]="{}">
+        <ion-row>
+            <ion-col [ngStyle]="{'padding':'10px 0 0 15px', 'font-weight':'bold', 'font-size':'14px'}">
+                {{ post.like_amount }} likes
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col [ngStyle]="{'padding':'10px 15px 0', 'font-size':'15px', 'line-height':'1.3rem'}">
+                <span [ngStyle]="{'font-weight':'bold'}" routerLink="/user/{{ post.users_id }}">{{ post.users_id }}</span>&nbsp;&nbsp;{{ post.caption }}
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col [ngStyle]="{'padding':'10px 15px 0', 'font-size':'15px', 'line-height':'1.3rem', 'color':'#BBBBBB'}" routerLink="/user/{{ post.users_id }}/post/{{ post.id }}/comment">
+                View all {{ comment_amount }} comments
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col [ngStyle]="{'padding':'7px 15px 20px', 'font-size':'13px', 'line-height':'1.3rem', 'color':'#BBBBBB'}">
+                {{ post.post_time }}
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

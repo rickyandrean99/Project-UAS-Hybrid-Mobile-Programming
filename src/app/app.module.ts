@@ -24,11 +24,13 @@ import { CreatepostComponent } from './createpost/createpost.component';
 import { HiddenpostComponent } from './hiddenpost/hiddenpost.component';
 import { SavedComponent } from './saved/saved.component';
 import { SearchComponent } from './search/search.component';
+import { CommentComponent } from './comment/comment.component';
 
 const appRoutes: Routes = [
     { path: 'home', component: BerandaComponent },
     { path: 'user/:username', component: UserComponent },
     { path: 'user/:username/post/:id', component: PostComponent },
+    { path: 'user/:username/post/:id/comment', component: CommentComponent },
     { path: 'profile/edit', component: ProfileeditComponent },
     { path: 'aboutus', component: AboutusComponent },
     { path: 'blocked', component: BlockComponent },
@@ -51,6 +53,7 @@ const appRoutes: Routes = [
         HiddenpostComponent,
         SavedComponent,
         SearchComponent,
+        CommentComponent
     ],
     entryComponents: [],
     imports: [
