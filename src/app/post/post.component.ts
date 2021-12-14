@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { PostService } from '../post.service';
 import { Storage } from '@ionic/storage';
 import { ActivatedRoute } from '@angular/router';
+import { ActionSheetController } from '@ionic/angular';
+import { UserService } from '../user.service';
+import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
     selector: 'app-post',
@@ -43,7 +47,7 @@ export class PostComponent implements OnInit {
                         }
                     }
                 }
-                
+
                 // Assign value
                 data["post_time"] = timePassed
                 this.post = data
@@ -76,7 +80,101 @@ export class PostComponent implements OnInit {
         )
     }
 
-    constructor(public ps: PostService, private storage: Storage, public route: ActivatedRoute) { }
+    async presentActionSheet() {
+        const actionSheet = await this.actionSheetController.create({
+            cssClass: 'my-custom-class',
+            buttons: ((this.post.users_id == await this.storage.get('user_id')) ?
+                [
+                    // user
+                    {
+                        text: 'Hide this post',
+                        icon: 'eye-off',
+                        handler: async () => {
+                            this.ps.hidePost(this.post.id, await this.storage.get('user_id')).subscribe(
+                                (data) => {
+                                    if (data == 'success') this.router.navigate(['/home'])
+                                }
+                            )
+                        },
+                    },
+                    {
+                        text: 'Edit post',
+                        icon: 'create',
+                        handler: async () => {
+                            this.router.navigate([`/editpost/${this.post.id}`])
+                        },
+                    },
+                    {
+                        text: 'Delete post',
+                        icon: 'trash',
+                        handler: async () => {
+                            // modal konfirmasi
+                            this.deleteConfirmation()
+
+                            // delete
+                            // redirect home
+                        },
+                    }
+                ] :
+                [
+                    // bukan user
+                    {
+                        text: 'Block friend',
+                        icon: 'person-remove',
+                        handler: async () => {
+                            this.us.blockUser(this.post.users_id, await this.storage.get('user_id')).subscribe(
+                                (data) => {
+                                    if (data == "block") this.router.navigate(['/home'])
+                                }
+                            )
+                        },
+                    },
+                    {
+                        text: 'Hide this post',
+                        icon: 'eye-off',
+                        handler: async () => {
+                            this.ps.hidePost(this.post.id, await this.storage.get('user_id')).subscribe(
+                                (data) => {
+                                    if (data == 'success') this.router.navigate(['/home'])
+                                }
+                            )
+                        },
+                    }
+                ]
+            )
+        })
+
+        await actionSheet.present()
+    }
+
+    // alert
+    async deleteConfirmation() {
+        const confirm = await this.alert.create({
+            header: 'Delete this post?',
+            message: 'This post will be deleted permanently from your account',
+            buttons: [
+                {
+                    text: 'Cancel',
+                    role: 'cancel',
+                    handler: () => { }
+                },
+                {
+                    text: 'Okay',
+                    handler: async () => {
+                        this.ps.deletePost(this.post.id, await this.storage.get('user_id')).subscribe(
+                            (data) => {
+                                console.log(data)
+                            }
+                        )
+                    }
+                }
+            ]
+        })
+
+        await confirm.present()
+    }
+
+    constructor(public ps: PostService, public us: UserService, private storage: Storage, public actionSheetController: ActionSheetController, public route: ActivatedRoute, private router: Router, public alert: AlertController) { }
 
     ngOnInit() {
         this.getPost(this.route.snapshot.params['id'])

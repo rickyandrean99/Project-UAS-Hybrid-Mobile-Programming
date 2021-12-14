@@ -25,6 +25,7 @@ import { HiddenpostComponent } from './hiddenpost/hiddenpost.component';
 import { SavedComponent } from './saved/saved.component';
 import { SearchComponent } from './search/search.component';
 import { CommentComponent } from './comment/comment.component';
+import { EditpostComponent } from './editpost/editpost.component';
 
 const appRoutes: Routes = [
     { path: 'home', component: BerandaComponent },
@@ -35,6 +36,7 @@ const appRoutes: Routes = [
     { path: 'aboutus', component: AboutusComponent },
     { path: 'blocked', component: BlockComponent },
     { path: 'createpost', component: CreatepostComponent },
+    { path: 'editpost/:id', component: EditpostComponent },
     { path: 'hiddenpost', component: HiddenpostComponent },
     { path: 'saved', component: SavedComponent },
     { path: 'search', component: SearchComponent },
@@ -50,6 +52,7 @@ const appRoutes: Routes = [
         AboutusComponent,
         BlockComponent,
         CreatepostComponent,
+        EditpostComponent,
         HiddenpostComponent,
         SavedComponent,
         SearchComponent,

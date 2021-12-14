@@ -1,6 +1,6 @@
 <ion-content [ngStyle]="{'margin':'0', 'padding':'0'}" *ngIf="post">
     <!-- Header section -->
-    <div [ngStyle]="{'display':'flex', 'flex-direction': 'row', 'padding':'10px'}">
+    <div [ngStyle]="{'display':'flex', 'flex-direction': 'row', 'padding':'10px 15px'}">
         <div [ngStyle]="{'width':'13%'}">
             <ion-img src="https://ubaya.fun/hybrid/160419051/metamu/profiles/{{ post.photo_profile }}" [ngStyle]="{'width':'100%'}" class="post-profile-photo" routerLink='/user/{{ post.users_id }}'></ion-img>
         </div>
@@ -8,9 +8,9 @@
             <div [ngStyle]="{'font-weight':'bold','margin-bottom':'5px', 'font-size':'15px'}"><span routerLink='/user/{{ post.users_id }}'>{{ post.users_id }}</span></div>
             <div *ngIf="post.location != null" [ngStyle]="{'font-size':'14px'}">{{ post.location }}</div>
         </div>
-        <!-- <div [ngStyle]="{'width':'5%', 'display':'flex', 'flex-direction': 'column', 'justify-content':'center', 'position':'relative'}">
-            <ion-icon name="ellipsis-vertical-outline" (click)="presentActionSheet(i)"></ion-icon>
-        </div> -->
+        <div [ngStyle]="{'width':'5%', 'display':'flex', 'flex-direction': 'column', 'justify-content':'center', 'position':'relative'}">
+            <ion-icon name="ellipsis-vertical-outline" (click)="presentActionSheet()"></ion-icon>
+        </div>
     </div>
 
     <!-- Image section -->
@@ -45,7 +45,7 @@
         </ion-row>
 
         <ion-row>
-            <ion-col [ngStyle]="{'padding':'10px 15px 0', 'font-size':'15px', 'line-height':'1.3rem', 'color':'#BBBBBB'}" routerLink="/user/{{ post.users_id }}/post/{{ post.id }}/comment">
+            <ion-col *ngIf="post.comment_amount > 0" [ngStyle]="{'padding':'10px 15px 0', 'font-size':'15px', 'line-height':'1.3rem', 'color':'#BBBBBB'}" routerLink="/user/{{ post.users_id }}/post/{{ post.id }}/comment">
                 View all {{ post.comment_amount }} comments
             </ion-col>
         </ion-row>
