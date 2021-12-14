@@ -18,5 +18,17 @@ export class ProfileService {
     );
   }
 
+  updateProfile(username: string, name: string, bio: string, gender:string, birth_date:string, photo:string): Observable<any>{
+    let body = new HttpParams();
+    body = body.set('username', username);
+    body = body.set('name', name);
+    body = body.set('bio', bio);
+    body = body.set('gender', gender);
+    body = body.set('birth_date', birth_date);
+    body = body.set('photo', photo);
+
+    return this.http.post('https://ubaya.fun/hybrid/160419051/metamu/updateUser.php',body);
+}
+
   constructor(private http:HttpClient) { }
 }

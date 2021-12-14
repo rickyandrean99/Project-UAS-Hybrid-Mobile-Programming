@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../profile.service';
 import { Storage } from '@ionic/storage';
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { Camera } from '@ionic-native/camera/ngx';
 
 @Component({
     selector: 'app-profileedit',
@@ -20,46 +20,36 @@ export class ProfileeditComponent implements OnInit {
 
     userImg: any = '';
     base64Img = '';
-    attachment = '';
 
     constructor(public ps: ProfileService, private storage: Storage, public camera:Camera) { }
     
-
-    // cameraOptions: CameraOptions = {
-    //     quality: 100,
-    //     destinationType: this.camera.DestinationType.DATA_URL,
-    //     encodingType: this.camera.EncodingType.JPEG,
-    //     mediaType: this.camera.MediaType.PICTURE,
-    //     allowEdit: true
-    //    }
     profile() {
         this.ps.getProfile(this.username).subscribe((data) => {
             this.nama = data["data"].name;  
             this.bio = data["data"].bio;
             this.gender = data["data"].gender;
             this.birth = data["data"].birth_date;
-            this.foto = data["data"].photo;
+            this.foto = "https://ubaya.fun/hybrid/160419051/metamu/profiles/"+data["data"].photo;
             
         });
     }
 
     openGallery() {
-        // this.camera.getPicture(this.cameraOptions).then((imgData) => {
-        // console.log('image data =>  ', imgData);
-        // this.base64Img = 'data:image/jpeg;base64,' + imgData;
-        // this.userImg = this.base64Img;
-        // }, (err) => {
-        // console.log(err);
-        // })
-
         this.camera.getPicture({
             sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
             destinationType: this.camera.DestinationType.DATA_URL
         }).then((res)=>{
-            this.attachment = 'data:image/jpeg;base64,' + res;
+            this.foto = 'data:image/jpeg;base64,' + res;
+            
         }).catch(e=>{
             console.log(e);
         })
+       }
+
+       update(){
+           this.ps.updateProfile(this.username,this.nama,this.bio,this.gender,this.birth,this.foto).subscribe((data)=>{
+                alert(data['pesan'])
+           });
        }
     async ngOnInit() {
         this.username = await this.storage.get('user_id');
