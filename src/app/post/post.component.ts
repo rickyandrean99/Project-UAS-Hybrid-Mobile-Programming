@@ -11,18 +11,10 @@ import { ActivatedRoute } from '@angular/router';
 
 export class PostComponent implements OnInit {
     post = null
-    comment_amount = 0
 
     async getPost(postId) {
         this.ps.postDetail(await this.storage.get('user_id'), postId).subscribe(
             (data) => {
-                // Get amount of comments and replies
-                let amount = 0
-                data["comments"].forEach(comment => {
-                    comment.replies.forEach(reply => amount++)
-                    amount++
-                })
-
                 // Converting datetime
                 let difference = ((Number(new Date()) - Number(new Date(data["post_time"]))) / 1000) | 0
                 let timePassed = `${difference} seconds ago`
@@ -54,7 +46,6 @@ export class PostComponent implements OnInit {
                 
                 // Assign value
                 data["post_time"] = timePassed
-                this.comment_amount = amount
                 this.post = data
             }
         )
