@@ -20,8 +20,8 @@
         <!-- Bottom section -->
         <div [ngStyle]="{'display':'flex', 'flex-direction': 'row', 'padding':'15px 10px'}">
             <div [ngStyle]="{'width':'13%', 'display':'flex', 'justify-content':'center', 'align-items':'center'}">
-                <ion-img *ngIf="post.like_status > 0" src="../../assets/icon/like_fill.png" [ngStyle]="{'width':'60%'}" (click)="changeLikeStatus(i)"></ion-img>
-                <ion-img *ngIf="post.like_status == 0" src="../../assets/icon/like.png" [ngStyle]="{'width':'60%'}" (click)="changeLikeStatus(i)"></ion-img>
+                <ion-img *ngIf="post.like_status > 0" src="https://ubaya.fun/hybrid/160419051/metamu/icons/like_fill.png" [ngStyle]="{'width':'60%'}" (click)="changeLikeStatus(i)"></ion-img>
+                <ion-img *ngIf="post.like_status == 0" src="https://ubaya.fun/hybrid/160419051/metamu/icons/like.png" [ngStyle]="{'width':'60%'}" (click)="changeLikeStatus(i)"></ion-img>
             </div>
             <div [ngStyle]="{'width':'37%', 'display':'flex', 'align-items':'center', 'padding-left':'3px', 'font-weight':'bold'}">
                 {{ post.post_likes }} likes

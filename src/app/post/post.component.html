@@ -19,16 +19,16 @@
     <!-- Bottom section -->
     <div [ngStyle]="{'display':'flex', 'flex-direction': 'row', 'padding':'15px 10px 0px'}">
         <div [ngStyle]="{'width':'13%', 'display':'flex', 'justify-content':'center', 'align-items':'center'}">
-            <ion-img *ngIf="post.like_status > 0" src="../../assets/icon/like_fill.png" [ngStyle]="{'width':'60%'}" (click)="changeLikeStatus(i)"></ion-img>
-            <ion-img *ngIf="post.like_status == 0" src="../../assets/icon/like.png" [ngStyle]="{'width':'60%'}" (click)="changeLikeStatus(i)"></ion-img>
+            <ion-img *ngIf="post.like_status > 0" src="https://ubaya.fun/hybrid/160419051/metamu/icons/like_fill.png" [ngStyle]="{'width':'60%'}" (click)="changeLikeStatus(i)"></ion-img>
+            <ion-img *ngIf="post.like_status == 0" src="https://ubaya.fun/hybrid/160419051/metamu/icons/like.png" [ngStyle]="{'width':'60%'}" (click)="changeLikeStatus(i)"></ion-img>
         </div>
         <div [ngStyle]="{'width':'13%', 'display':'flex', 'justify-content':'center', 'align-items':'center'}">
-            <ion-img src="../../assets/icon/comment.png" [ngStyle]="{'width':'60%'}" routerLink="/user/{{ post.users_id }}/post/{{ post.id }}/comment"></ion-img>
+            <ion-img src="https://ubaya.fun/hybrid/160419051/metamu/icons/comment.png" [ngStyle]="{'width':'60%'}" routerLink="/user/{{ post.users_id }}/post/{{ post.id }}/comment"></ion-img>
         </div>
         <div [ngStyle]="{'width':'61%'}"></div>
         <div [ngStyle]="{'width':'13%', 'display':'flex', 'justify-content':'center', 'align-items':'center'}">
-            <ion-img *ngIf="post.saved_status == 0" src="../../assets/icon/saved.png" [ngStyle]="{'width':'60%'}" (click)="changeSavedStatus()"></ion-img>
-            <ion-img *ngIf="post.saved_status > 0" src="../../assets/icon/saved_fill.png" [ngStyle]="{'width':'60%'}" (click)="changeSavedStatus()"></ion-img>
+            <ion-img *ngIf="post.saved_status == 0" src="https://ubaya.fun/hybrid/160419051/metamu/icons/saved.png" [ngStyle]="{'width':'60%'}" (click)="changeSavedStatus()"></ion-img>
+            <ion-img *ngIf="post.saved_status > 0" src="https://ubaya.fun/hybrid/160419051/metamu/icons/saved_fill.png" [ngStyle]="{'width':'60%'}" (click)="changeSavedStatus()"></ion-img>
         </div>
     </div>
     <ion-grid [ngStyle]="{}">
