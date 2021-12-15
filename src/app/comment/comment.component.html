@@ -45,7 +45,7 @@
         </ion-row>
     </ion-grid>
 
-    <ion-grid [ngStyle]="{'position':'sticky', 'bottom':'0', 'padding':'0', 'margin':'0'}">
+    <ion-grid [ngStyle]="{'position':'fixed', 'bottom':'0', 'padding':'0', 'margin':'0', 'width':'100%'}">
         <ion-row *ngIf="replyData" [ngStyle]="{'background':'rgba(40,40,40,1)','margin':'0', 'padding':'15px 20px'}">
             <ion-col size="10" [ngStyle]="{'font-size':'14px'}">
                 Replying to {{ replyData.user_id }}

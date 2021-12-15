@@ -69,8 +69,22 @@ export class CommentComponent implements OnInit {
 
         if (this.replyData) {
             this.ps.sendReply(this.post.post_id, this.replyData.user_id, this.replyData.time, time, userId, this.userText).subscribe(
-                (data) => { 
-                    
+                (data) => {
+                    if (data == 'success') {
+                        let reply = {
+                            user_id: userId,
+                            user_photo: this.post.user_login_photo,
+                            time: time,
+                            timeText: 'now',
+                            reply: this.userText
+                        }
+    
+                        let indexComment = this.post.comments.findIndex((post) => post.user_id === this.replyData.user_id && post.time === this.replyData.time)
+                        this.post.comments[indexComment].replies.unshift(reply)
+                        
+                        this.replyData = null
+                        this.userText = ''
+                    }
                 }
             )
         } else {
@@ -96,7 +110,6 @@ export class CommentComponent implements OnInit {
 
     reply(commentId: number) {
         this.replyData = this.post.comments[commentId]
-        console.log(this.replyData)
     }
 
     removeReply() {
