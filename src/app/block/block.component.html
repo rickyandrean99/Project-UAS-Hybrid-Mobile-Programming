@@ -1,5 +1,6 @@
 <ion-list *ngFor="let l of list">
   <ion-item>
-    <ion-label>{{ l }}</ion-label>
+    <ion-label>{{ l.block_friend }}</ion-label>
+    <ion-label><ion-icon name="close-circle-outline" (click)="unblock('{{ l.block_friend }}')"></ion-icon></ion-label>
   </ion-item>
 </ion-list>

@@ -27,7 +27,7 @@ export class ProfileService {
     body = body.set('birth_date', birth_date);
     body = body.set('photo', photo);
 
-    return this.http.post('https://ubaya.fun/hybrid/160419051/metamu/updateUser.php',body);
+    return this.http.post('https://ubaya.fun/hybrid/160419051/metamu/updateUser.php', body);
 }
 
   constructor(private http:HttpClient) { }

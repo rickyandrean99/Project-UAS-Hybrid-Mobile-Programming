@@ -10,12 +10,15 @@ import { ActivatedRoute } from '@angular/router';
 })
 
 export class CommentComponent implements OnInit {
-    postComment = null
+    post = null
 
     getComment(postId: number) {
         this.ps.commentList(postId).subscribe(
             (data) => {
-                this.postComment = data
+                let splitCaption = ''
+                data['caption'].split(" ", 30).forEach(caption => splitCaption += caption + ' ' )
+                data['caption'] = ` ${splitCaption}...`
+                this.post = data
             }
         )
     }

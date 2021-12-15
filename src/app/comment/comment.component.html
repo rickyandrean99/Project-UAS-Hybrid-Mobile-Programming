@@ -1,3 +1,15 @@
-<p>
-  comment works!
-</p>
+<ion-content *ngIf="post">
+    <ion-grid>
+        <ion-row [ngStyle]="{'padding-top':'10px'}">
+            <ion-col size="2" [ngStyle]="{'display':'flex', 'justify-content':'center', 'align-items': 'flex-start'}">
+                <ion-img src="https://ubaya.fun/hybrid/160419051/metamu/profiles/{{ post.user_photo }}" class="post-profile-photo" [ngStyle]="{'margin':'0.2rem 0', 'width':'80%'}"></ion-img>
+            </ion-col>
+            <ion-col size="10" [ngStyle]="{'padding-top':'8px'}">
+                <div [ngStyle]="{'line-height':'1.2rem', 'font-size':'14px'}">
+                    <span routerLink="/user/{{ post.user_id }}" [ngStyle]="{'font-weight':'bold'}">{{ post.user_id }}</span>
+                    <span>{{ post.caption }}</span>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

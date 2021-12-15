@@ -9,19 +9,24 @@ import { Storage } from '@ionic/storage';
 })
 export class BlockComponent implements OnInit {
   list = []
+  login = ""
 
   async blockedList() {
-    let login = await this.storage.get('user_id')
-    this.us.getBlockedUser(login).subscribe(
+    this.us.getBlockedUser(this.login).subscribe(
       (data) => {
         this.list = data
       }
     )
   }
 
+  unblock() {
+
+  }
+
   constructor(public us: UserService, private storage: Storage,) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.login = await this.storage.get('user_id')
     this.blockedList()
   }
 }
