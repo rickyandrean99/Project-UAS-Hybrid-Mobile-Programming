@@ -18,8 +18,8 @@ export class PostService {
         return this.http.post("https://ubaya.fun/hybrid/160419051/metamu/post_detail.php", body)
     }
 
-    commentList(postId: number) {
-        let body = new HttpParams().set('post_id', postId)
+    commentList(username: string, postId: number) {
+        let body = new HttpParams().set('username', username).set('post_id', postId)
         return this.http.post("https://ubaya.fun/hybrid/160419051/metamu/comment_list.php", body)
     }
 
@@ -31,6 +31,16 @@ export class PostService {
     changeSavedStatus(postId: number, username: string): Observable<any> {
         let body = new HttpParams().set('post_id', postId).set('username', username)
         return this.http.post("https://ubaya.fun/hybrid/160419051/metamu/saved_status.php", body)
+    }
+
+    sendComment(postId: number, username: string, time: string, comment: string) {
+        let body = new HttpParams().set('post_id', postId).set('username', username).set('time', time).set('comment', comment)
+        return this.http.post("https://ubaya.fun/hybrid/160419051/metamu/send_comment.php", body)
+    }
+
+    sendReply(postId: number, userCommentId: number, commentTime: string, time: string, username: string, reply: string) {
+        let body = new HttpParams().set('post_id', postId).set('user_comment_id', userCommentId).set('comment_time', commentTime).set('time', time).set('username', username).set('reply', reply)
+        return this.http.post("https://ubaya.fun/hybrid/160419051/metamu/send_reply.php", body)
     }
 
     deletePost(postId: number, username: string): Observable<any> {

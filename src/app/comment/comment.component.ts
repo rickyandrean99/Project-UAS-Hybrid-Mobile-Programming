@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PostService } from '../post.service';
 import { Storage } from '@ionic/storage';
 import { ActivatedRoute } from '@angular/router';
+import { formatDate } from '@angular/common';
 
 @Component({
     selector: 'app-comment',
@@ -11,28 +12,25 @@ import { ActivatedRoute } from '@angular/router';
 
 export class CommentComponent implements OnInit {
     post = null
+    userText = ''
+    replyData = null
 
     convertTime(time) {
-        // Converting datetime
         let difference = ((Number(new Date()) - Number(new Date(time))) / 1000) | 0
         let timePassed = `${difference} seconds ago`
 
         if (difference >= 60) {
             difference /= 60
             timePassed = `${difference | 0} minutes ago`
-
             if (difference >= 60) {
                 difference /= 60
                 timePassed = `${difference | 0} hours ago`
-
                 if (difference >= 24) {
                     difference /= 24
                     timePassed = `${difference | 0} days ago`
-
                     if (difference >= 30) {
                         difference /= 30
                         timePassed = `${difference | 0} months ago`
-
                         if (difference >= 365) {
                             difference /= 365
                             timePassed = `${difference | 0} years ago`
@@ -45,14 +43,14 @@ export class CommentComponent implements OnInit {
         return timePassed
     }
 
-    getComment(postId: number) {
-        this.ps.commentList(postId).subscribe(
+    async getComment(postId: number) {
+        this.ps.commentList(await this.storage.get('user_id'), postId).subscribe(
             (data) => {
-                data['time'] = this.convertTime(data['time'])
+                data['timeText'] = this.convertTime(data['time'])
                 data['comments'].forEach((comment, index1) => {
-                    data['comments'][index1].time = this.convertTime(comment.time)
+                    data['comments'][index1].timeText = this.convertTime(comment.time)
                     comment.replies.forEach((reply, index2) => {
-                        data['comments'][index1].replies[index2].time = this.convertTime(reply.time)
+                        data['comments'][index1].replies[index2].timeText = this.convertTime(reply.time)
                     })
                 })
                 
@@ -65,12 +63,44 @@ export class CommentComponent implements OnInit {
         )
     }
 
-    sendComment() {
-        // ehe
+    async sendCommentReply() {
+        let time = formatDate(Date.now(),'yyyy-MM-dd HH:mm:ss','en-US')
+        let userId = await this.storage.get('user_id')
+
+        if (this.replyData) {
+            this.ps.sendReply(this.post.post_id, this.replyData.user_id, this.replyData.time, time, userId, this.userText).subscribe(
+                (data) => { 
+                    
+                }
+            )
+        } else {
+            this.ps.sendComment(this.post.post_id, userId, time, this.userText).subscribe(
+                (data) => { 
+                    if (data == 'success') {
+                        let comment = {
+                            user_id: userId,
+                            user_photo: this.post.user_login_photo,
+                            time: time,
+                            timeText: 'now',
+                            comment: this.userText,
+                            replies: []
+                        }
+
+                        this.post.comments.unshift(comment)
+                        this.userText = ''
+                    }
+                }
+            )
+        }
     }
 
-    reply(userId: number) {
-        console.log(userId)
+    reply(commentId: number) {
+        this.replyData = this.post.comments[commentId]
+        console.log(this.replyData)
+    }
+
+    removeReply() {
+        this.replyData = null
     }
 
     constructor(public ps: PostService, private storage: Storage, public route: ActivatedRoute) { }

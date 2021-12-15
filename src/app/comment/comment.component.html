@@ -7,8 +7,8 @@
             <ion-col size="10" [ngStyle]="{'padding-top':'10px'}">
                 <div [ngStyle]="{'line-height':'1.2rem', 'font-size':'14px'}">
                     <span routerLink="/user/{{ post.user_id }}" [ngStyle]="{'font-weight':'bold'}">{{ post.user_id }}</span>
-                    <span>{{ post.caption }}</span>
-                    <div [ngStyle]="{'padding-top':'5px','color':'#bbbbbb', 'font-size':'13px'}">{{ post.time }}</div>
+                    <span routerLink="/user/{{ post.user_id }}/post/{{ post.post_id }}">{{ post.caption }}</span>
+                    <div [ngStyle]="{'padding-top':'5px','color':'#bbbbbb', 'font-size':'13px'}">{{ post.timeText }}</div>
                 </div>
             </ion-col>
         </ion-row>
@@ -16,7 +16,7 @@
         <ion-item-divider [ngStyle]="{'margin-top':'-20px'}"></ion-item-divider>
 
         <!-- Comment -->
-        <ion-row [ngStyle]="{'padding-top':'10px'}" *ngFor="let comment of post.comments">
+        <ion-row [ngStyle]="{'padding-top':'10px'}" *ngFor="let comment of post.comments; let i = index">
             <ion-col size="2" [ngStyle]="{'display':'flex', 'justify-content':'center', 'align-items': 'flex-start'}">
                 <ion-img src="https://ubaya.fun/hybrid/160419051/metamu/profiles/{{ comment.user_photo }}" routerLink="/user/{{ comment.user_id }}" class="post-profile-photo" [ngStyle]="{'margin':'0.2rem 0', 'width':'80%'}"></ion-img>
             </ion-col>
@@ -24,7 +24,7 @@
                 <div [ngStyle]="{'line-height':'1.2rem', 'font-size':'14px'}">
                     <span routerLink="/user/{{ comment.user_id }}" [ngStyle]="{'font-weight':'bold'}">{{ comment.user_id }}</span>
                     <span> {{ comment.comment }}</span>
-                    <div [ngStyle]="{'padding-top':'5px','color':'#bbbbbb', 'font-size':'13px'}">{{ comment.time }} <span [ngStyle]="{'margin-left':'15px'}" (click)="reply(comment.user_id)">reply</span></div>
+                    <div [ngStyle]="{'padding-top':'5px','color':'#bbbbbb', 'font-size':'13px'}">{{ comment.timeText }} <span [ngStyle]="{'margin-left':'15px'}" (click)="reply(i)">reply</span></div>
                 </div>
             </ion-col>
 
@@ -38,7 +38,7 @@
                     <div [ngStyle]="{'line-height':'1.2rem', 'font-size':'14px'}">
                         <span routerLink="/user/{{ reply.user_id }}" [ngStyle]="{'font-weight':'bold'}">{{ reply.user_id }}</span>
                         <span> {{ reply.reply }}</span>
-                        <div [ngStyle]="{'padding-top':'5px','color':'#bbbbbb', 'font-size':'13px'}">{{ reply.time }}</div>
+                        <div [ngStyle]="{'padding-top':'5px','color':'#bbbbbb', 'font-size':'13px'}">{{ reply.timeText }}</div>
                     </div>
                 </ion-col>
             </ion-row>
@@ -46,9 +46,23 @@
     </ion-grid>
 
     <ion-grid [ngStyle]="{'position':'sticky', 'bottom':'0', 'padding':'0', 'margin':'0'}">
+        <ion-row *ngIf="replyData" [ngStyle]="{'background':'rgba(40,40,40,1)','margin':'0', 'padding':'15px 20px'}">
+            <ion-col size="10" [ngStyle]="{'font-size':'14px'}">
+                Replying to {{ replyData.user_id }}
+            </ion-col>
+            <ion-col size="2" [ngStyle]="{'text-align':'right'}">
+                <ion-icon name="close" (click)="removeReply()"></ion-icon>
+            </ion-col>
+        </ion-row>
         <ion-row>
-            <ion-col [ngStyle]="{'background':'rgba(25,25,25,1)'}">
-                <ion-input placeholder="Add a comment..." [ngStyle]="{'font-size':'14px'}"></ion-input>
+            <ion-col [ngStyle]="{'background':'rgba(25,25,25,1)','margin':'0', 'padding':'0'}">
+                <ion-item>
+                    <ion-label>
+                        <ion-img src="https://ubaya.fun/hybrid/160419051/metamu/profiles/{{ post.user_login_photo }}" class="post-profile-photo" [ngStyle]="{'margin':'0.2rem 0', 'width':'40px'}"></ion-img>
+                    </ion-label>
+                    <ion-input placeholder="Add a comment..." [ngStyle]="{'font-size':'14px','margin':'0 5px'}" [(ngModel)]="userText"></ion-input>
+                    <span (click)="sendCommentReply()" [ngStyle]="{'position':'sticky','z-index':'100', 'padding':'5px 10px'}">Post</span>
+                </ion-item>
             </ion-col>
         </ion-row>
     </ion-grid>
