@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../profile.service';
 import { Storage } from '@ionic/storage';
 import { Camera } from '@ionic-native/camera/ngx';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-profileedit',
@@ -23,7 +24,8 @@ export class ProfileeditComponent implements OnInit {
   constructor(
     public ps: ProfileService,
     private storage: Storage,
-    public camera: Camera
+    public camera: Camera,
+    public alert: AlertController
   ) {}
 
   profile() {
@@ -52,7 +54,7 @@ export class ProfileeditComponent implements OnInit {
       });
   }
 
-  update() {
+   update() {
     this.birth = this.formatDate(this.birth);
     this.ps
       .updateProfile(
@@ -64,8 +66,23 @@ export class ProfileeditComponent implements OnInit {
         this.foto
       )
       .subscribe((data) => {
-        alert(data['pesan']);
+        this.presetAlert(data['pesan']);
       });
+  }
+
+  async presetAlert(pesan:string){
+    var confirm = await this.alert.create({
+      header: 'Announcement',
+      message: pesan,
+      buttons: [
+        {
+            text: 'Cancel',
+            role: 'cancel',
+            handler: () => { }
+        }
+      ]
+    });
+    await confirm.present();
   }
   formatDate(date){
     var d = new Date(date);
