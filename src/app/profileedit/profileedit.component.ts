@@ -5,6 +5,7 @@ import { Camera } from '@ionic-native/camera/ngx';
 import { AlertController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { Router } from "@angular/router";
+import { ResetpasswordComponent } from '../resetpassword/resetpassword.component';
 
 @Component({
   selector: 'app-profileedit',
@@ -90,7 +91,12 @@ export class ProfileeditComponent implements OnInit {
   }
 
   async openResetModal(){
-
+    const modal = await this.modal.create({
+      component: ResetpasswordComponent,
+      cssClass: 'my-custom-class',
+      swipeToClose: true,
+    });
+    return await modal.present();
   }
 
   formatDate(date){

@@ -61,9 +61,16 @@ export class CommentComponent implements OnInit {
                 data['caption'] = ` ${splitCaption}...`
                 
                 this.post = data
-                console.log(this.post)
             }
         )
+    }
+
+    sendComment() {
+        // ehe
+    }
+
+    reply(userId: number) {
+        console.log(userId)
     }
 
     constructor(public ps: PostService, private storage: Storage, public route: ActivatedRoute) { }

@@ -1,3 +1,27 @@
-<p>
-  hiddenpost works!
-</p>
+<ion-card *ngFor="let l of list; let i = index" [ngStyle]="{'margin':'1.2rem', 'padding':'0'}">
+  <ion-card-content [ngStyle]="{'margin':'0', 'padding':'0'}">
+      <!-- Header section -->
+      <div [ngStyle]="{'display':'flex', 'flex-direction': 'row', 'padding':'10px'}">
+          <div [ngStyle]="{'width':'13%'}">
+              <ion-img src="https://ubaya.fun/hybrid/160419051/metamu/profiles/{{ l.user_photos }}.jpg" [ngStyle]="{'width':'100%'}" class="post-profile-photo" routerLink='/user/{{ l.user_id }}'></ion-img>
+          </div>
+          <div [ngStyle]="{'width':'82%', 'display':'flex', 'flex-direction': 'column', 'justify-content':'center', 'padding-left':'10px'}">
+              <div [ngStyle]="{'font-weight':'bold'}"><span routerLink='/user/{{ l.user_id }}'>{{ l.user_id }}</span></div>
+              <div *ngIf="l.post_location != null">{{ l.post_location }}</div>
+          </div>
+          <div [ngStyle]="{'width':'5%', 'display':'flex', 'flex-direction': 'column', 'justify-content':'center', 'position':'relative'}">
+              <ion-icon name="ellipsis-vertical-outline" (click)="presentActionSheet(i)"></ion-icon>
+          </div>
+      </div>
+
+      <!-- Image section -->
+      <ion-img src="https://ubaya.fun/hybrid/160419051/metamu/posts/{{ l.post_photo }}" routerLink='/user/{{ l.user_id }}/post/{{ l.post_id }}' [ngStyle]="{'margin':'0.2rem 0'}"></ion-img>
+      
+      <!-- Bottom section -->
+      <div [ngStyle]="{'display':'flex', 'flex-direction': 'row', 'padding':'15px 10px'}">
+          <div [ngStyle]="{'width':'50%', 'display':'flex', 'align-items':'center', 'justify-content':'flex-end', 'padding-right':'10px', 'font-weight':'bold'}">
+              {{ l.post_time }}
+          </div>
+      </div>
+  </ion-card-content>
+</ion-card>

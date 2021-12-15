@@ -12,13 +12,14 @@ export class HiddenpostComponent implements OnInit {
   list = []
   login = ""
 
-  // async blockedList() {
-  //   this.us.getBlockedUser(this.login).subscribe(
-  //     (data) => {
-  //       this.list = data
-  //     }
-  //   )
-  // }
+  hiddenList() {
+    this.ps.getHideList(this.login).subscribe(
+      (data) => {
+        console.log(data)
+        // this.list = data
+      }
+    )
+  }
 
   // async unblock(userTarget: string, index: number) {
   //   const confirm = await this.alert.create({
@@ -49,6 +50,7 @@ export class HiddenpostComponent implements OnInit {
 
   async ngOnInit() {
     this.login = await this.storage.get('user_id')
+    this.hiddenList()
   }
 
 }
