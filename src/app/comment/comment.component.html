@@ -2,14 +2,46 @@
     <ion-grid>
         <ion-row [ngStyle]="{'padding-top':'10px'}">
             <ion-col size="2" [ngStyle]="{'display':'flex', 'justify-content':'center', 'align-items': 'flex-start'}">
-                <ion-img src="https://ubaya.fun/hybrid/160419051/metamu/profiles/{{ post.user_photo }}" class="post-profile-photo" [ngStyle]="{'margin':'0.2rem 0', 'width':'80%'}"></ion-img>
+                <ion-img src="https://ubaya.fun/hybrid/160419051/metamu/profiles/{{ post.user_photo }}" routerLink="/user/{{ post.user_id }}" class="post-profile-photo" [ngStyle]="{'margin':'0.2rem 0', 'width':'80%'}"></ion-img>
             </ion-col>
-            <ion-col size="10" [ngStyle]="{'padding-top':'8px'}">
+            <ion-col size="10" [ngStyle]="{'padding-top':'10px'}">
                 <div [ngStyle]="{'line-height':'1.2rem', 'font-size':'14px'}">
                     <span routerLink="/user/{{ post.user_id }}" [ngStyle]="{'font-weight':'bold'}">{{ post.user_id }}</span>
                     <span>{{ post.caption }}</span>
+                    <div [ngStyle]="{'padding-top':'5px','color':'#bbbbbb', 'font-size':'13px'}">{{ post.time }}</div>
                 </div>
             </ion-col>
+        </ion-row>
+
+        <ion-item-divider [ngStyle]="{'margin-top':'-20px'}"></ion-item-divider>
+
+        <!-- Comment -->
+        <ion-row [ngStyle]="{'padding-top':'10px'}" *ngFor="let comment of post.comments">
+            <ion-col size="2" [ngStyle]="{'display':'flex', 'justify-content':'center', 'align-items': 'flex-start'}">
+                <ion-img src="https://ubaya.fun/hybrid/160419051/metamu/profiles/{{ comment.user_photo }}" routerLink="/user/{{ comment.user_id }}" class="post-profile-photo" [ngStyle]="{'margin':'0.2rem 0', 'width':'80%'}"></ion-img>
+            </ion-col>
+            <ion-col size="10" [ngStyle]="{'padding-top':'10px'}">
+                <div [ngStyle]="{'line-height':'1.2rem', 'font-size':'14px'}">
+                    <span routerLink="/user/{{ comment.user_id }}" [ngStyle]="{'font-weight':'bold'}">{{ comment.user_id }}</span>
+                    <span> {{ comment.comment }}</span>
+                    <div [ngStyle]="{'padding-top':'5px','color':'#bbbbbb', 'font-size':'13px'}">{{ comment.time }}</div>
+                </div>
+            </ion-col>
+
+            <!-- reply -->
+            <ion-row [ngStyle]="{'padding-top':'10px'}" *ngFor="let reply of comment.replies">
+                <ion-col size="2"></ion-col>
+                <ion-col size="2" [ngStyle]="{'display':'flex', 'justify-content':'center', 'align-items': 'flex-start', 'margin-left':'-10px'}">
+                    <ion-img src="https://ubaya.fun/hybrid/160419051/metamu/profiles/{{ reply.user_photo }}" routerLink="/user/{{ reply.user_id }}" class="post-profile-photo" [ngStyle]="{'margin':'0.2rem 0', 'width':'80%'}"></ion-img>
+                </ion-col>
+                <ion-col size="8" [ngStyle]="{'padding-top':'10px'}">
+                    <div [ngStyle]="{'line-height':'1.2rem', 'font-size':'14px'}">
+                        <span routerLink="/user/{{ reply.user_id }}" [ngStyle]="{'font-weight':'bold'}">{{ reply.user_id }}</span>
+                        <span> {{ reply.reply }}</span>
+                        <div [ngStyle]="{'padding-top':'5px','color':'#bbbbbb', 'font-size':'13px'}">{{ reply.time }}</div>
+                    </div>
+                </ion-col>
+            </ion-row>
         </ion-row>
     </ion-grid>
 </ion-content>

@@ -46,7 +46,5 @@ export class UserService {
         return this.http.post('https://ubaya.fun/hybrid/160419051/metamu/blocked_list.php', body)
     }
 
-    
-
     constructor(private http: HttpClient) { }
 }

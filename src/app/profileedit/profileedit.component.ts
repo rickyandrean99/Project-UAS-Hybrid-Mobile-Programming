@@ -3,6 +3,8 @@ import { ProfileService } from '../profile.service';
 import { Storage } from '@ionic/storage';
 import { Camera } from '@ionic-native/camera/ngx';
 import { AlertController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-profileedit',
@@ -25,7 +27,9 @@ export class ProfileeditComponent implements OnInit {
     public ps: ProfileService,
     private storage: Storage,
     public camera: Camera,
-    public alert: AlertController
+    public alert: AlertController,
+    public modal: ModalController,
+    private router: Router
   ) {}
 
   profile() {
@@ -84,6 +88,11 @@ export class ProfileeditComponent implements OnInit {
     });
     await confirm.present();
   }
+
+  async openResetModal(){
+
+  }
+
   formatDate(date){
     var d = new Date(date);
     var month = '' + (d.getMonth() + 1);

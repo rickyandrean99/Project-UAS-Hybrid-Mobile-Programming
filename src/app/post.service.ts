@@ -43,5 +43,10 @@ export class PostService {
         return this.http.post("https://ubaya.fun/hybrid/160419051/metamu/hide_post.php", body)
     }
 
+    getHideList(username: string): Observable<any> {
+        let body = new HttpParams().set('username', username)
+        return this.http.post('https://ubaya.fun/hybrid/160419051/metamu/hidden_list.php', body)
+    }
+
     constructor(private http: HttpClient) { }
 }
