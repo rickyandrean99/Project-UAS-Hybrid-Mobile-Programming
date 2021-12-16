@@ -12,7 +12,6 @@ import { Storage } from '@ionic/storage';
 
 export class BerandaComponent implements OnInit {
     posts = null
-    open = true
 
     async changeLikeStatus(index: number) {
         this.ps.changeLikeStatus(this.posts[index].post_id, await this.storage.get('user_id')).subscribe(

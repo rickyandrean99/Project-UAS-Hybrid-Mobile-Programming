@@ -20,15 +20,9 @@ export class ProfileeditComponent implements OnInit {
     gender = '';
     birth = '';
     foto = '';
-
     currentPass = "";
     newPass = "";
     rePass = "";
-
-    userImg: any = '';
-    base64Img = '';
-
-
 
     constructor(
         public ps: ProfileService,

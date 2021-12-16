@@ -63,6 +63,11 @@ export class PostService {
         return this.http.post('https://ubaya.fun/hybrid/160419051/metamu/get_edit_post.php', body)
     }
 
+    createPost(username: string, photo: any, caption: string, location: string, time: string) {
+        let body = new HttpParams().set('username', username).set('photo', photo).set('caption', caption).set('location', location).set('time', time)
+        return this.http.post('https://ubaya.fun/hybrid/160419051/metamu/create_post.php', body)
+    }
+
     editPost(postId: number, caption: string, location: string): Observable<any> {
         let body = new HttpParams().set('post_id', postId).set('caption', caption).set('location', location)
         return this.http.post('https://ubaya.fun/hybrid/160419051/metamu/edit_post.php', body)
