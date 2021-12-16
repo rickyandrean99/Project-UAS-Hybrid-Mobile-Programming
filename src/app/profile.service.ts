@@ -30,5 +30,15 @@ export class ProfileService {
     return this.http.post('https://ubaya.fun/hybrid/160419051/metamu/updateUser.php', body);
 }
 
+  resetPassword(username:string, currentPass:string, newPass:string, rePass:string): Observable<any>{
+    let body = new HttpParams();
+    body = body.set('username', username);
+    body = body.set('currentPass', currentPass);
+    body = body.set('newPass', newPass);
+    body = body.set('rePass', rePass);
+
+    return this.http.post('https://ubaya.fun/hybrid/160419051/metamu/resetPassword.php', body);
+  }
+
   constructor(private http:HttpClient) { }
 }

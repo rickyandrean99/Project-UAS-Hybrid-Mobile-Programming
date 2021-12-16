@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { Routes, RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -27,6 +27,8 @@ import { SavedComponent } from './saved/saved.component';
 import { SearchComponent } from './search/search.component';
 import { CommentComponent } from './comment/comment.component';
 import { EditpostComponent } from './editpost/editpost.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
+
 
 const appRoutes: Routes = [
   { path: 'home', component: BerandaComponent },
@@ -58,6 +60,7 @@ const appRoutes: Routes = [
     SavedComponent,
     SearchComponent,
     CommentComponent,
+    ResetpasswordComponent,
   ],
   entryComponents: [],
   imports: [

@@ -21,8 +21,14 @@ export class ProfileeditComponent implements OnInit {
   birth = '';
   foto = '';
 
+  currentPass = "";
+  newPass= "";
+  rePass = "";
+
   userImg: any = '';
   base64Img = '';
+
+  
 
   constructor(
     public ps: ProfileService,
@@ -81,9 +87,11 @@ export class ProfileeditComponent implements OnInit {
       message: pesan,
       buttons: [
         {
-            text: 'Cancel',
+            text: 'Okay',
             role: 'cancel',
-            handler: () => { }
+            handler: () => { 
+              
+            }
         }
       ]
     });
@@ -91,12 +99,16 @@ export class ProfileeditComponent implements OnInit {
   }
 
   async openResetModal(){
-    const modal = await this.modal.create({
+    let modal = await this.modal.create({
       component: ResetpasswordComponent,
-      cssClass: 'my-custom-class',
+      componentProps: { currentPass: "" },
       swipeToClose: true,
     });
-    return await modal.present();
+
+   await modal.present();
+   modal.onDidDismiss().then((data)=>{
+     console.log(data);
+   })
   }
 
   formatDate(date){
