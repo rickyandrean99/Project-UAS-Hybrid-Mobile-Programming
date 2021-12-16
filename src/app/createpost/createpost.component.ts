@@ -11,7 +11,9 @@ import { Router } from "@angular/router";
 })
 
 export class CreatepostComponent implements OnInit {
-    foto = ''
+    photo = ''
+    caption = ''
+    location = ''
 
     openGallery() {
         this.camera
@@ -20,19 +22,21 @@ export class CreatepostComponent implements OnInit {
                 destinationType: this.camera.DestinationType.DATA_URL,
             })
             .then((res) => {
-                this.foto = 'data:image/jpeg;base64,' + res;
+                this.photo = 'data:image/jpeg;base64,' + res;
             })
             .catch((e) => {
                 console.log(e);
             });
     }
 
-    update() {
-        this.ps.createPost().subscribe(
-            (data) => {
-                console.log(data)
-            }
-        )
+    async createPost() {
+        let time = null
+
+        // this.ps.createPost(await this.storage.get('user_id'), this.photo, this.caption. this.location, time).subscribe(
+        //     (data) => {
+        //         console.log(data)
+        //     }
+        // )
     }
     
     constructor(public ps: PostService, private storage: Storage, public camera: Camera, private router: Router) { }
