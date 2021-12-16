@@ -16,7 +16,7 @@ export class EditpostComponent implements OnInit {
     caption = ''
     location = ''
 
-    async getEditPost(idPost: number) {
+    getEditPost(idPost: number) {
         this.ps.getEditPost(idPost).subscribe(
             (data) => {
                 this.post = data
