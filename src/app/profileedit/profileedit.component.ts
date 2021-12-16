@@ -8,126 +8,125 @@ import { Router } from "@angular/router";
 import { ResetpasswordComponent } from '../resetpassword/resetpassword.component';
 
 @Component({
-  selector: 'app-profileedit',
-  templateUrl: './profileedit.component.html',
-  styleUrls: ['./profileedit.component.scss'],
+    selector: 'app-profileedit',
+    templateUrl: './profileedit.component.html',
+    styleUrls: ['./profileedit.component.scss'],
 })
 export class ProfileeditComponent implements OnInit {
-  username: string = '';
-  user = null;
-  nama = '';
-  bio = '';
-  gender = '';
-  birth = '';
-  foto = '';
+    username: string = '';
+    user = null;
+    nama = '';
+    bio = '';
+    gender = '';
+    birth = '';
+    foto = '';
 
-  currentPass = "";
-  newPass= "";
-  rePass = "";
+    currentPass = "";
+    newPass = "";
+    rePass = "";
 
-  userImg: any = '';
-  base64Img = '';
+    userImg: any = '';
+    base64Img = '';
 
-  
 
-  constructor(
-    public ps: ProfileService,
-    private storage: Storage,
-    public camera: Camera,
-    public alert: AlertController,
-    public modal: ModalController,
-    private router: Router
-  ) {}
 
-  profile() {
-    this.ps.getProfile(this.username).subscribe((data) => {
-      this.nama = data['data'].name;
-      this.bio = data['data'].bio;
-      this.gender = data['data'].gender;
-      this.birth = data['data'].birth_date;
-      this.foto =
-        'https://ubaya.fun/hybrid/160419051/metamu/profiles/' +
-        data['data'].photo;
-    });
-  }
+    constructor(
+        public ps: ProfileService,
+        private storage: Storage,
+        public camera: Camera,
+        public alert: AlertController,
+        public modal: ModalController,
+        private router: Router
+    ) { }
 
-  openGallery() {
-    this.camera
-      .getPicture({
-        sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-        destinationType: this.camera.DestinationType.DATA_URL,
-      })
-      .then((res) => {
-        this.foto = 'data:image/jpeg;base64,' + res;
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  }
+    profile() {
+        this.ps.getProfile(this.username).subscribe((data) => {
+            this.nama = data['data'].name;
+            this.bio = data['data'].bio;
+            this.gender = data['data'].gender;
+            this.birth = data['data'].birth_date;
+            this.foto =
+                'https://ubaya.fun/hybrid/160419051/metamu/profiles/' +
+                data['data'].photo;
+        });
+    }
 
-   update() {
-    this.birth = this.formatDate(this.birth);
-    this.ps
-      .updateProfile(
-        this.username,
-        this.nama,
-        this.bio,
-        this.gender,
-        this.birth,
-        this.foto
-      )
-      .subscribe((data) => {
-        this.presetAlert(data['pesan']);
-      });
-  }
+    openGallery() {
+        this.camera
+            .getPicture({
+                sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+                destinationType: this.camera.DestinationType.DATA_URL,
+            })
+            .then((res) => {
+                this.foto = 'data:image/jpeg;base64,' + res;
+            })
+            .catch((e) => {
+                console.log(e);
+            });
+    }
 
-  async presetAlert(pesan:string){
-    var confirm = await this.alert.create({
-      header: 'Announcement',
-      message: pesan,
-      buttons: [
-        {
-            text: 'Okay',
-            role: 'cancel',
-            handler: () => { 
-              
-            }
+    update() {
+        this.birth = this.formatDate(this.birth);
+        this.ps
+            .updateProfile(
+                this.username,
+                this.nama,
+                this.bio,
+                this.gender,
+                this.birth,
+                this.foto
+            )
+            .subscribe((data) => {
+                this.presetAlert(data['pesan']);
+            });
+    }
+
+    async presetAlert(pesan: string) {
+        var confirm = await this.alert.create({
+            header: 'Edit profile',
+            message: pesan,
+            buttons: [
+                {
+                    text: 'Okay',
+                    handler: () => {
+
+                    }
+                }
+            ]
+        });
+        await confirm.present();
+    }
+
+    async openResetModal() {
+        let modal = await this.modal.create({
+            component: ResetpasswordComponent,
+            componentProps: { currentPass: "" },
+            swipeToClose: true,
+        });
+
+        await modal.present();
+        modal.onDidDismiss().then((data) => {
+            console.log(data);
+        })
+    }
+
+    formatDate(date) {
+        var d = new Date(date);
+        var month = '' + (d.getMonth() + 1);
+        var day = '' + d.getDate();
+        var year = d.getFullYear();
+
+        if (month.length < 2) {
+            month = '0' + month;
         }
-      ]
-    });
-    await confirm.present();
-  }
+        if (day.length < 2) {
+            day = '0' + day;
+        }
 
-  async openResetModal(){
-    let modal = await this.modal.create({
-      component: ResetpasswordComponent,
-      componentProps: { currentPass: "" },
-      swipeToClose: true,
-    });
-
-   await modal.present();
-   modal.onDidDismiss().then((data)=>{
-     console.log(data);
-   })
-  }
-
-  formatDate(date){
-    var d = new Date(date);
-    var month = '' + (d.getMonth() + 1);
-    var day = '' + d.getDate();
-    var year = d.getFullYear();
-
-    if (month.length < 2){
-      month = '0' + month;
+        return [year, month, day].join('-');
     }
-    if (day.length < 2) {
-      day = '0' + day;
+    async ngOnInit() {
+        this.username = await this.storage.get('user_id');
+        this.profile();
     }
-
-    return [year, month, day].join('-');
-  }
-  async ngOnInit() {
-    this.username = await this.storage.get('user_id');
-    this.profile();
-  }
 }

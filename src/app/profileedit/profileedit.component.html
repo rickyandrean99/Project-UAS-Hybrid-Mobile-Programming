@@ -1,37 +1,53 @@
-<ion-img src="{{ foto }}" [ngStyle]="{'width':'60%' }" class="post-profile-photo"></ion-img>
-<ion-button expand="block" (click)="openGallery()" class="ion-margin-horizontal">Change Profile</ion-button> <br>
-<ion-button expand="block" fill="outline" (click)="openResetModal()" class="ion-margin-horizontal">Reset Password</ion-button>
-<!-- <div class="fileUpload btn btn-primary">
-  <span>Upload</span>
-  <input type="file" class="upload" />
-</div> -->
+<ion-content>
+    <ion-grid>
+        <ion-row [ngStyle]="{'display':'flex', 'justify-content':'center', 'margin':'25px 0 15px'}">
+            <ion-col size="4">
+                <ion-img src="{{ foto }}" class="post-profile-photo"></ion-img>
+            </ion-col>
+        </ion-row>
+        
+        <!-- Button Edit photo -->
+        <ion-row>
+            <ion-col size="12" [ngStyle]="{'text-align':'center'}">
+                <span (click)="openGallery()" [ngStyle]="{'font-weight':'500','color':'#0275d8'}">Change Profile Photo</span>
+            </ion-col>
+        </ion-row>
+            
+        <ion-row [ngStyle]="{'display':'flex', 'justify-content':'center', 'margin':'25px 0 0', 'padding':'0 8px'}">
+            <ion-col size="12" [ngStyle]="{'margin-bottom':'5px'}">
+                <ion-item>
+                    <ion-label position="floating">Nama</ion-label>
+                    <ion-input [(ngModel)]="nama"></ion-input>
+                </ion-item>
+            </ion-col>
+            <ion-col size="12" [ngStyle]="{'margin-bottom':'5px'}">
+                <ion-item>
+                    <ion-label position="floating">Biodata</ion-label>
+                    <ion-input [(ngModel)]="bio"></ion-input>
+                </ion-item>
+            </ion-col>
+            <ion-col size="12" [ngStyle]="{'margin-bottom':'5px'}">
+                <ion-item>
+                    <ion-label>Gender</ion-label>
+                    <ion-select [(ngModel)]="gender">
+                        <ion-select-option value="Female">Female</ion-select-option>
+                        <ion-select-option value="Male">Male</ion-select-option>
+                    </ion-select>
+                </ion-item>
+            </ion-col>
+            <ion-col size="12" [ngStyle]="{'margin-bottom':'5px'}">
+                <ion-item>
+                    <ion-label position="floating">Birth Date</ion-label>
+                    <ion-datetime [(ngModel)]="birth"></ion-datetime>
+                </ion-item>
+            </ion-col>
+        </ion-row>
 
-<ion-item>
-  <ion-label position="floating">Nama</ion-label>
-  <ion-input [(ngModel)]="nama"></ion-input>
-</ion-item>
+        <ion-button expand="block" [ngStyle]="{'text-transform':'capitalize', 'letter-spacing':'0px', 'font-size':'16px', 'margin':'12px'}" fill="outline" (click)="openResetModal()">Reset Password</ion-button>
 
-<ion-item>
-  <ion-label position="floating">Biodata</ion-label>
-  <ion-input [(ngModel)]="bio"></ion-input>
-</ion-item>
+        <ion-button expand="block" [ngStyle]="{'text-transform':'capitalize', 'letter-spacing':'0px', 'font-size':'16px', 'margin':'12px'}" (click)="update()">Save Profile</ion-button>
+    </ion-grid>
+</ion-content>
 
-<!-- <ion-item>
-  <ion-label position="floating">Gender</ion-label>
-  <ion-input [(ngModel)]="gender"></ion-input>
-</ion-item> -->
 
-<ion-item>
-  <ion-label>Gender</ion-label>
-  <ion-select [(ngModel)]="gender">
-    <ion-select-option value="Female">Female</ion-select-option>
-    <ion-select-option value="Male">Male</ion-select-option>
-  </ion-select>
-</ion-item>
 
-<ion-item>
-  <ion-label position="floating">Birth Date</ion-label>
-  <ion-datetime [(ngModel)]="birth" ></ion-datetime>
-</ion-item>
-
-<ion-button expand="block" (click)="update()" class="ion-margin-horizontal">Save</ion-button>
