@@ -10,10 +10,12 @@ import { Storage } from '@ionic/storage';
   styleUrls: ['./saved.component.scss'],
 })
 export class SavedComponent implements OnInit {
-  posts = null
+  list = []
+  login = ""
 
   constructor(public ps: PostService, public us: UserService, public actionSheetController: ActionSheetController, private storage: Storage) { }
 
-  ngOnInit() {}
-
+  async ngOnInit() {
+    this.login = await this.storage.get('user_id')
+  }
 }
