@@ -31,9 +31,7 @@ export class CreatepostComponent implements OnInit {
     }
 
     async createPost() {
-        let time = formatDate(Date.now(),'yyyy-MM-dd HH:mm:ss','en-US')
-
-        this.ps.createPost(await this.storage.get('user_id'), this.photo, this.caption, this.location, time).subscribe(
+        this.ps.createPost(await this.storage.get('user_id'), this.photo, this.caption, this.location).subscribe(
             (data) => {
                 if (data == 'success') {
                     this.router.navigate(['/home'])

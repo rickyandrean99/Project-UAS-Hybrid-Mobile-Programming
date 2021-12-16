@@ -33,13 +33,13 @@ export class PostService {
         return this.http.post("https://ubaya.fun/hybrid/160419051/metamu/saved_status.php", body)
     }
 
-    sendComment(postId: number, username: string, time: string, comment: string): Observable<any> {
-        let body = new HttpParams().set('post_id', postId).set('username', username).set('time', time).set('comment', comment)
+    sendComment(postId: number, username: string, comment: string): Observable<any> {
+        let body = new HttpParams().set('post_id', postId).set('username', username).set('comment', comment)
         return this.http.post("https://ubaya.fun/hybrid/160419051/metamu/send_comment.php", body)
     }
 
-    sendReply(postId: number, userCommentId: number, commentTime: string, time: string, username: string, reply: string): Observable<any> {
-        let body = new HttpParams().set('post_id', postId).set('user_comment_id', userCommentId).set('comment_time', commentTime).set('time', time).set('username', username).set('reply', reply)
+    sendReply(postId: number, userCommentId: number, commentTime: string, username: string, reply: string): Observable<any> {
+        let body = new HttpParams().set('post_id', postId).set('user_comment_id', userCommentId).set('comment_time', commentTime).set('username', username).set('reply', reply)
         return this.http.post("https://ubaya.fun/hybrid/160419051/metamu/send_reply.php", body)
     }
 
@@ -68,8 +68,8 @@ export class PostService {
         return this.http.post('https://ubaya.fun/hybrid/160419051/metamu/get_edit_post.php', body)
     }
 
-    createPost(username: string, photo: any, caption: string, location: string, time: string): Observable<any> {
-        let body = new HttpParams().set('username', username).set('photo', photo).set('caption', caption).set('location', location).set('time', time)
+    createPost(username: string, photo: any, caption: string, location: string): Observable<any> {
+        let body = new HttpParams().set('username', username).set('photo', photo).set('caption', caption).set('location', location)
         return this.http.post('https://ubaya.fun/hybrid/160419051/metamu/create_post.php', body)
     }
 

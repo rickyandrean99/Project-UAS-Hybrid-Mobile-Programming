@@ -34,7 +34,7 @@ export class ResetpasswordComponent implements OnInit {
       message: pesan,
       buttons: [
         {
-            text: 'Cancel',
+            text: 'Okay',
             handler: () => {
               if(pesan == "success change your password"){
                 this.router.navigate(['/user/'+this.username]);

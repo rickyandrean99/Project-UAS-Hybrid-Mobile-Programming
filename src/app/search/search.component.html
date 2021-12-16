@@ -1,18 +1,22 @@
 <ion-item>
-  <ion-input type='test' [(ngModel)]="users" placeholder="search account" (input)="search($event)" ></ion-input>
+    <ion-input type='test' [(ngModel)]="users" placeholder="search account" (input)="search($event)"></ion-input>
 </ion-item>
-<div [ngStyle]="{'padding-top':'10px'}" *ngIf= "resultLengh != 0">
-  <ion-row *ngFor="let user of result; let i = index">
-    <ion-col size="2" [ngStyle]="{'display':'flex', 'justify-content':'center', 'align-items': 'flex-start'}">
-      <ion-img src="https://ubaya.fun/hybrid/160419051/metamu/profiles/{{ user.photo }}" routerLink="/user/{{ user.username }}" class="post-profile-photo" [ngStyle]="{'margin':'0.2rem 0', 'width':'80%'}"></ion-img>
-    </ion-col>
-    <ion-col size="10" [ngStyle]="{'margin-top':'15px'}">
-        <div [ngStyle]="{'line-height':'1.2rem', 'font-size':'14px'}">
-            <span routerLink="/user/{{ user.username }}" [ngStyle]="{'font-weight':'bold'}">{{ user.username }}</span>
-        </div>
-    </ion-col>
-  </ion-row>
+<div [ngStyle]="{'padding-top':'10px'}" *ngIf="resultLengh != 0 && !empty">
+    <ion-row *ngFor="let user of result; let i = index">
+        <ion-col size="2" [ngStyle]="{'display':'flex', 'justify-content':'center', 'align-items': 'flex-start'}">
+            <ion-img src="https://ubaya.fun/hybrid/160419051/metamu/profiles/{{ user.photo }}"
+                routerLink="/user/{{ user.username }}" class="post-profile-photo"
+                [ngStyle]="{'margin':'0.2rem 0', 'width':'80%'}"></ion-img>
+        </ion-col>
+        <ion-col size="10" [ngStyle]="{'margin-top':'15px'}">
+            <div [ngStyle]="{'line-height':'1.2rem', 'font-size':'14px'}">
+                <span routerLink="/user/{{ user.username }}" [ngStyle]="{'font-weight':'bold'}">{{ user.username
+                    }}</span>
+            </div>
+        </ion-col>
+    </ion-row>
 </div>
-<div *ngIf= "resultLengh == 0">
-  <p>No result found for "{{ users }}"</p>
+
+<div *ngIf="resultLengh == 0 && !empty">
+    <p>No result found for "{{ users }}"</p>
 </div>

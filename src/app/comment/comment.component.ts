@@ -64,17 +64,15 @@ export class CommentComponent implements OnInit {
     }
 
     async sendCommentReply() {
-        let time = formatDate(Date.now(),'yyyy-MM-dd HH:mm:ss','en-US')
         let userId = await this.storage.get('user_id')
 
         if (this.replyData) {
-            this.ps.sendReply(this.post.post_id, this.replyData.user_id, this.replyData.time, time, userId, this.userText).subscribe(
+            this.ps.sendReply(this.post.post_id, this.replyData.user_id, this.replyData.time, userId, this.userText).subscribe(
                 (data) => {
                     if (data == 'success') {
                         let reply = {
                             user_id: userId,
                             user_photo: this.post.user_login_photo,
-                            time: time,
                             timeText: 'now',
                             reply: this.userText
                         }
@@ -88,13 +86,12 @@ export class CommentComponent implements OnInit {
                 }
             )
         } else {
-            this.ps.sendComment(this.post.post_id, userId, time, this.userText).subscribe(
+            this.ps.sendComment(this.post.post_id, userId, this.userText).subscribe(
                 (data) => { 
                     if (data == 'success') {
                         let comment = {
                             user_id: userId,
                             user_photo: this.post.user_login_photo,
-                            time: time,
                             timeText: 'now',
                             comment: this.userText,
                             replies: []
