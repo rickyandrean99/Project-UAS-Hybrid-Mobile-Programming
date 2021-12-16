@@ -89,7 +89,7 @@ export class ProfileeditComponent implements OnInit {
                 {
                     text: 'Okay',
                     handler: () => {
-
+                      this.router.navigate(['/user/'+this.username]);
                     }
                 }
             ]
@@ -100,14 +100,10 @@ export class ProfileeditComponent implements OnInit {
     async openResetModal() {
         let modal = await this.modal.create({
             component: ResetpasswordComponent,
-            componentProps: { currentPass: "" },
             swipeToClose: true,
         });
 
-        await modal.present();
-        modal.onDidDismiss().then((data) => {
-            console.log(data);
-        })
+        return await modal.present();
     }
 
     formatDate(date) {

@@ -4,7 +4,6 @@ import { Storage } from '@ionic/storage';
 import { Router } from "@angular/router";
 import { AlertController } from '@ionic/angular';
 import { ProfileService } from '../profile.service';
-import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-resetpassword',
@@ -14,23 +13,19 @@ import { FormControl } from '@angular/forms';
 export class ResetpasswordComponent implements OnInit {
 
   constructor(public modal: ModalController, private storage: Storage,private router: Router,public alert: AlertController,public ps: ProfileService,) { }
-  @Input() currentPass:any;
-  // newPass= "";
-  // rePass = "";
+  currentPass="";
+  newPass= "";
+  rePass = "";
   username: string="";
   dimisModal(){
-    this.modal.dismiss({
-
-    });
+    this.modal.dismiss();
   }
 
   save(){
-    // this.ps.resetPassword(this.username,this.currentPass,this.newPass,this.rePass).subscribe((data) => {
-    //   this.showAlert(this.currentPass);
-    // });
-    this.modal.dismiss({
-      curPass: this.currentPass,
+    this.ps.resetPassword(this.username,this.currentPass,this.newPass,this.rePass).subscribe((data) => {
+      this.showAlert(data);
     });
+   
   }
 
   async showAlert(pesan){
@@ -42,7 +37,7 @@ export class ResetpasswordComponent implements OnInit {
             text: 'Cancel',
             handler: () => {
               if(pesan == "success change your password"){
-                
+                this.router.navigate(['/user/'+this.username]);
               }
              }
         }

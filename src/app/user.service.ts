@@ -46,5 +46,10 @@ export class UserService {
         return this.http.post('https://ubaya.fun/hybrid/160419051/metamu/blocked_list.php', body)
     }
 
+    search(username: string): Observable<any>{
+        let body = new HttpParams().set('username', username);
+        return this.http.post('https://ubaya.fun/hybrid/160419051/metamu/search.php', body);
+    }
+
     constructor(private http: HttpClient) { }
 }
