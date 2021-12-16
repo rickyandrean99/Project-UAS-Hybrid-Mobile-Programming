@@ -78,5 +78,10 @@ export class PostService {
         return this.http.post('https://ubaya.fun/hybrid/160419051/metamu/edit_post.php', body)
     }
 
+    getSavedList(username: string): Observable<any> {
+        let body = new HttpParams().set('username', username)
+        return this.http.post('https://ubaya.fun/hybrid/160419051/metamu/saved_list.php', body)
+    }
+
     constructor(private http: HttpClient) { }
 }
