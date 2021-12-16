@@ -16,7 +16,7 @@ export class HiddenpostComponent implements OnInit {
   hiddenList() {
     this.ps.getHideList(this.login).subscribe(
       (data) => {
-        console.log(data)
+        // console.log(data)
         this.list = data
       }
     )
@@ -28,7 +28,9 @@ export class HiddenpostComponent implements OnInit {
             text: 'Unhide this post',
             icon: 'eye-outline',
             handler: async () => {
-                this.ps.unhidePost(this.list[index].post_id, this.login).subscribe(
+              // console.log(this.list[index].id)
+              // console.log(this.login)
+                this.ps.unhidePost(this.list[index].id, this.login).subscribe(
                     (data) => {
                         if (data['result'] == 'success') {
                             this.list.splice(index, 1)
@@ -41,31 +43,6 @@ export class HiddenpostComponent implements OnInit {
 
     await actionSheet.present()
 }
-
-  // async unblock(userTarget: string, index: number) {
-  //   const confirm = await this.alert.create({
-  //     header: 'Unblock this person?',
-  //     message: 'This person will be unblocked.',
-  //     buttons: [
-  //         {
-  //             text: 'Cancel',
-  //             role: 'cancel',
-  //             handler: () => { }
-  //         },
-  //         {
-  //             text: 'Okay',
-  //             handler: async () => {
-  //                 this.us.blockUser(userTarget, this.login).subscribe(
-  //                   (data) => {
-  //                     if(data == 'unblock'){
-  //                       this.list.splice(index, 1)
-  //                     }
-  //                   }
-  //                 )
-  //             }
-  //         }
-  //     ]
-  // })
 
   constructor(public ps: PostService, private storage: Storage, public alert: AlertController, public actionSheetController: ActionSheetController) { }
 

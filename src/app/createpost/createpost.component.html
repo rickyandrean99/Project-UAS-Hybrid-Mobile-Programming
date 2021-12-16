@@ -1,3 +1,36 @@
-<p>
-    createpost works!
-</p>
+<ion-content>
+    <ion-grid>
+        <!-- Gambar -->
+        <ion-row [ngStyle]="{'display':'flex', 'justify-content':'center'}">
+            <ion-col size="11" [ngStyle]="{'display':'flex', 'justify-content':'center', 'align-items':'center','min-height':'200px', ''}">
+                <ion-img *ngIf="foto" src="{{ foto }}" class="post-profile-photo"></ion-img>
+
+                <span (click)="openGallery()" [ngStyle]="{'font-weight':'500','color':'#0275d8'}">Add post photo</span>
+            </ion-col>
+        </ion-row>
+
+        <!-- <div [ngStyle]="{'display':'flex', 'flex-direction': 'row', 'padding':'20px 25px 10px'}">
+            <div [ngStyle]="{'width':'13%'}">
+                <ion-img src="https://ubaya.fun/hybrid/160419051/metamu/profiles/{{ post.user_photo }}" [ngStyle]="{'width':'100%'}" class="post-profile-photo" routerLink='/user/{{ post.user_id }}'></ion-img>
+            </div>
+            <div [ngStyle]="{'width':'87%', 'display':'flex', 'flex-direction': 'column', 'justify-content':'center', 'padding-left':'10px'}">
+                <div [ngStyle]="{'font-weight':'bold', 'margin-left':'9px', 'font-size':'15px'}"><span routerLink='/user/{{ post.user_id }}'>{{ post.user_id }}</span></div>
+                <ion-input value="{{ post.post_location }}" [ngStyle]="{'font-size':'14px', 'color':'#0275d8', 'font-weight':'bold','font-size':'14px'}" placeholder="Add location" [(ngModel)]="location"></ion-input>
+            </div>
+        </div> -->
+
+        <!-- Caption -->
+        <ion-row [ngStyle]="{'margin-bottom':'10px','display':'flex', 'justify-content':'center'}">
+            <ion-col size="11">
+                <ion-textarea placeholder="Add caption" value="{{ post.post_caption }}" rows="4" [ngStyle]="{'font-size':'14px','line-height':'1.3rem'}" [(ngModel)]="caption"></ion-textarea>
+            </ion-col>
+        </ion-row>
+
+        <!-- Button -->
+        <ion-row [ngStyle]="{'display':'flex', 'justify-content':'center'}">
+            <ion-col size="11">
+                <ion-button expand="block" [ngStyle]="{'text-transform':'capitalize', 'letter-spacing':'0px', 'font-size':'16px'}" (click)="editPost()">Save changes</ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
