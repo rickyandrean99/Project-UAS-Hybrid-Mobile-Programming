@@ -9,15 +9,15 @@ import { UserService } from '../user.service';
 export class SearchComponent implements OnInit {
 
   constructor(private us: UserService) { }
-  keyword:any = null;
-  $result: any = null;
-  $resultLengh: any= 0;
+  result: any = null;
+  resultLengh: any= null;
+  users="";
 
-  search(){
-    this.us.search(this.keyword).subscribe((data) =>{
-        this.$result = data;
-        this.$resultLengh=data.length;
-        alert(this.$resultLengh);
+  search(event:Event){
+    let keyword = event.target as HTMLInputElement
+    this.us.search(keyword.value).subscribe((data) =>{
+        this.result = data;
+        this.resultLengh=data.length;
     });
   }
   ngOnInit() {}

@@ -41,7 +41,7 @@ export class ProfileeditComponent implements OnInit {
             this.birth = data['data'].birth_date;
             this.foto =
                 'https://ubaya.fun/hybrid/160419051/metamu/profiles/' +
-                data['data'].photo;
+                data['data'].photo+'?dummy='+Math.floor(Math.random() * 999999);
         });
     }
 
