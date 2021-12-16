@@ -68,5 +68,10 @@ export class PostService {
         return this.http.post('https://ubaya.fun/hybrid/160419051/metamu/edit_post.php', body)
     }
 
+    unhidePost(postId: number, username: string): Observable<any> {
+        let body = new HttpParams().set('post_id', postId).set('username', username)
+        return this.http.post("https://ubaya.fun/hybrid/160419051/metamu/unhide_post.php", body)
+    }
+
     constructor(private http: HttpClient) { }
 }
