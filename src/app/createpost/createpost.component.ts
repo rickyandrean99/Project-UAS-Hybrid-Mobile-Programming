@@ -35,7 +35,9 @@ export class CreatepostComponent implements OnInit {
 
         this.ps.createPost(await this.storage.get('user_id'), this.photo, this.caption, this.location, time).subscribe(
             (data) => {
-                console.log(data)
+                if (data == 'success') {
+                    this.router.navigate(['/home'])
+                }
             }
         )
     }

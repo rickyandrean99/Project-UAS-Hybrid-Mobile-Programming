@@ -2,9 +2,10 @@
     <ion-grid>
         <!-- Gambar -->
         <ion-row [ngStyle]="{'display':'flex', 'justify-content':'center', 'margin-top':'10px'}">
-            <ion-col size="11" [ngStyle]="{'display':'flex', 'justify-content':'center', 'align-items':'center','min-height':'200px', 'background': '#111111'}">
-                <ion-img *ngIf="foto" src="{{ photo }}" class="post-profile-photo"></ion-img>
-
+            <ion-col *ngIf="photo" size="11" [ngStyle]="{'display':'flex', 'justify-content':'center', 'align-items':'center','min-height':'200px', 'background': '#111111'}">
+                <ion-img src="{{ photo }}" class="post-profile-photo"></ion-img>
+            </ion-col>
+            <ion-col size="11" [ngStyle]="{'display':'flex', 'justify-content':'center', 'align-items':'center', 'background': '#111111', 'padding':'15px 0'}">
                 <span (click)="openGallery()" [ngStyle]="{'font-weight':'500','color':'#0275d8'}">Add post photo</span>
             </ion-col>
         </ion-row>
